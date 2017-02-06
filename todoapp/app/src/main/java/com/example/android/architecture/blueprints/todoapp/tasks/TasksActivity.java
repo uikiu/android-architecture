@@ -26,8 +26,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.example.android.architecture.blueprints.todoapp.BuildConfig;
 import com.example.android.architecture.blueprints.todoapp.Injection;
 import com.example.android.architecture.blueprints.todoapp.R;
 import com.example.android.architecture.blueprints.todoapp.statistics.StatisticsActivity;
@@ -36,8 +39,10 @@ import com.example.android.architecture.blueprints.todoapp.util.EspressoIdlingRe
 
 public class TasksActivity extends AppCompatActivity {
 
+    //当前过滤的key名称
     private static final String CURRENT_FILTERING_KEY = "CURRENT_FILTERING_KEY";
 
+    //rootView 抽屉布局
     private DrawerLayout mDrawerLayout;
 
     private TasksPresenter mTasksPresenter;
@@ -47,21 +52,22 @@ public class TasksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tasks_act);
 
-        // Set up the toolbar.
+        // 1.设置toolbar Set up the toolbar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
 
-        // Set up the navigation drawer.
+        // 2.设置抽屉导航 Set up the navigation drawer.
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackground(R.color.colorPrimaryDark);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);//抽屉导航顶部
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }
 
+        // 3.设置fragment
         TasksFragment tasksFragment =
                 (TasksFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
         if (tasksFragment == null) {
@@ -71,11 +77,11 @@ public class TasksActivity extends AppCompatActivity {
                     getSupportFragmentManager(), tasksFragment, R.id.contentFrame);
         }
 
-        // Create the presenter
+        // 创建一个presenter展示者，Create the presenter
         mTasksPresenter = new TasksPresenter(
                 Injection.provideTasksRepository(getApplicationContext()), tasksFragment);
 
-        // Load previously saved state, if available.
+        // 加载之前保存的状态---与onSaveInstanceState对应：Load previously saved state, if available.
         if (savedInstanceState != null) {
             TasksFilterType currentFiltering =
                     (TasksFilterType) savedInstanceState.getSerializable(CURRENT_FILTERING_KEY);
@@ -83,6 +89,7 @@ public class TasksActivity extends AppCompatActivity {
         }
     }
 
+    //保存状态
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(CURRENT_FILTERING_KEY, mTasksPresenter.getFiltering());
@@ -96,11 +103,13 @@ public class TasksActivity extends AppCompatActivity {
             case android.R.id.home:
                 // Open the navigation drawer when the home icon is selected from the toolbar.
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                Toast.makeText(this, "选项被点击", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+//    设置抽屉导航
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
