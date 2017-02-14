@@ -26,6 +26,7 @@ import java.util.List;
 
 /**
  * This specifies the contract between the view and the presenter.
+ * 指定view和presenter之间的协议
  */
 public interface TasksContract {
 
@@ -70,20 +71,28 @@ public interface TasksContract {
 
         void result(int requestCode, int resultCode);
 
+        //加载任务：是否强制更新
         void loadTasks(boolean forceUpdate);
 
+        //添加新任务
         void addNewTask();
 
+        //打开任务详情
         void openTaskDetails(@NonNull Task requestedTask);
 
+        //完成任务
         void completeTask(@NonNull Task completedTask);
 
+        //激活任务
         void activateTask(@NonNull Task activeTask);
 
+        //清除已完成任务
         void clearCompletedTasks();
 
+        //设置过滤器：全部任务||已激活任务||已完成任务
         void setFiltering(TasksFilterType requestType);
 
+        //获取当前过滤类型
         TasksFilterType getFiltering();
     }
 }

@@ -34,8 +34,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Listens to user actions from the UI ({@link TasksFragment}), retrieves the data and updates the
  * UI as required.
  *
- * 在UI界面（TasksFragment）上监听用户行为，
- *
+ * 从UI(TasksFragment)上监听用户操作,检索数据并更新UI
+ * 这个TasksPresenter和TasksFragment是对应关系
  */
 public class TasksPresenter implements TasksContract.Presenter {
 

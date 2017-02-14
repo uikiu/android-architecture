@@ -31,21 +31,24 @@ import java.util.Map;
 
 /**
  * Concrete implementation to load tasks from the data sources into a cache.
+ * 从数据源加载到缓存当中，任务的具体实现
  * <p>
  * For simplicity, this implements a dumb synchronisation between locally persisted data and data
  * obtained from the server, by using the remote data source only if the local database doesn't
  * exist or is empty.
+ * 为了简单起见，这里实现了一个愚蠢的同步方式在本地和服务器端持续同步数据，如果本地数据不存在或者为空，则仅使用远端数据。
  */
 public class TasksRepository implements TasksDataSource {
 
-    private static TasksRepository INSTANCE = null;
+    private static TasksRepository INSTANCE = null;//本类实体类
 
-    private final TasksDataSource mTasksRemoteDataSource;
+    private final TasksDataSource mTasksRemoteDataSource;//远端数据源
 
-    private final TasksDataSource mTasksLocalDataSource;
+    private final TasksDataSource mTasksLocalDataSource;//本地数据源
 
     /**
      * This variable has package local visibility so it can be accessed from tests.
+     *
      */
     Map<String, Task> mCachedTasks;
 
@@ -64,7 +67,7 @@ public class TasksRepository implements TasksDataSource {
 
     /**
      * Returns the single instance of this class, creating it if necessary.
-     *
+     * 返回本类的实体对象
      * @param tasksRemoteDataSource the backend data source
      * @param tasksLocalDataSource  the device storage data source
      * @return the {@link TasksRepository} instance

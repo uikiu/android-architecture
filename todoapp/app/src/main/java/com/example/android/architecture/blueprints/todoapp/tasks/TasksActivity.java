@@ -45,6 +45,7 @@ public class TasksActivity extends AppCompatActivity {
     //rootView 抽屉布局
     private DrawerLayout mDrawerLayout;
 
+    //任务展示者
     private TasksPresenter mTasksPresenter;
 
     @Override
