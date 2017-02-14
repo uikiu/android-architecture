@@ -27,12 +27,13 @@ import java.util.List;
 /**
  * This specifies the contract between the view and the presenter.
  * 指定view和presenter之间的协议
+ * contract 协议、合同
  */
 public interface TasksContract {
 
     interface View extends BaseView<Presenter> {
 
-        void setLoadingIndicator(boolean active);
+        void setLoadingIndicator(boolean active);//indicator指示剂
 
         void showTasks(List<Task> tasks);
 
