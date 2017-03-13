@@ -1,0 +1,110 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+
+    defaultConfig {
+        applicationId "com.android001.www.example"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+
+    signingConfigs {
+        release {//声明签名
+            storeFile file("example.jks")
+            storePassword "123456"
+            keyAlias "example"
+            keyPassword "123456"
+        }
+    }
+
+    /**
+     * buildTypes领域包含buildConfigField领域，所以常常用来对java提供动态参数，以对内构造不同版本
+     */
+    buildTypes {
+        debug {
+            minifyEnabled true
+            // Uses new built-in shrinker http://tools.android.com/tech-docs/new-build-system/built-in-shrinker
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+            signingConfig signingConfigs.release//使用签名
+        }
+
+        common.initWith(buildTypes.release)
+        common {
+            applicationIdSuffix ".common"
+        }
+    }
+
+    /**
+     * productFlavors领域包含manifestPlaceholders领域，所以常常用来对manifest提供动态参数，以对外提供不同渠道
+     */
+    productFlavors {
+        flavor1 {
+
+        }
+
+        flavor2 {
+
+        }
+
+        flavor3 {
+
+        }
+
+    }
+
+    productFlavors.all {
+        flavor->
+            flavor.manifestPlaceholders = [CHANNEL_VALUE:name]
+    }
+
+    /**
+     * 自动化打包
+     */
+    applicationVariants.all { variant->
+        variant.outputs.each { output->
+            if (output.outputFile!=null&&output.outputFile.name.endsWith('apk')) {
+                if ('release'.equals(variant.buildType.name) ){
+                    def apkFile = new File(output.outputFile.getParent(),
+                    "example_${variant.flavorName}_${variant.buildType.name}_ver${variant.versionName}_pt${new Date().format("yyyyMMddHHmm",TimeZone.getTimeZone("UTC"))}.apk")
+                    output.outputFile=apkFile
+                } else if ('common'.equals(variant.buildType.name)) {
+                    def apkFile = new File(output.outputFile.getParent(),
+                            "example_${variant.flavorName}_${variant.buildType.name}_ver${variant.versionName}_pt${new Date().format("yyyyMMddHHmm",TimeZone.getTimeZone("UTC"))}.apk")
+                    output.outputFile=apkFile
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    testCompile 'junit:junit:4.12'
+    compile project(':001Common')
+    compile 'com.orhanobut:logger:1.15'
+}
