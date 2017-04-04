@@ -63,7 +63,7 @@ public class TasksActivity extends AppCompatActivity {
         // 2.设置抽屉导航 Set up the navigation drawer.
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackground(R.color.colorPrimaryDark);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);//抽屉导航顶部
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);//抽屉导航
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }

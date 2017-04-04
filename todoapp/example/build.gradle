@@ -107,4 +107,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':001Common')
     compile 'com.orhanobut:logger:1.15'
+    compile 'com.android.support:design:25.1.0'
 }

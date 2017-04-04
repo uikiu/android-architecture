@@ -15,4 +15,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="开始打印" />
+
+    <Button
+        android:text="抽屉导航"
+        android:layout_below="@id/print"
+        android:id="@+id/drawerNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

@@ -1,6 +1,8 @@
 package com.android001.www.example;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +19,7 @@ import java.util.HashSet;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button mPrint;
+    Button mPrint,mDrawerNavigation;
 
 
     @Override
@@ -27,6 +29,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Logger.e("启动完成");
         mPrint = (Button) findViewById(R.id.print);
         mPrint.setOnClickListener(this);
+        mDrawerNavigation = (Button) findViewById(R.id.drawerNavigation);
+        mDrawerNavigation.setOnClickListener(this);
+        //
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_TIME_CHANGED);
+        this.registerReceiver(new CalendarChangeReceiver(),filter);
     }
 
     @Override
@@ -36,27 +44,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.print:
                 Log.i("xixionghui","获取到的ip = "+IpUtils.getWIFILocalIpAdress(this));
                 break;
+            case R.id.drawerNavigation:
+                startActivity(new Intent(this,DrawerActivity.class));
+                break;
         }
     }
 
-   void prntHuaWeiImei(){
-       try {
-           Class<?> classFile = Class.forName("android.telephony.TelephonyManager");
-//            Method method = classFile.getMethod("getDeviceId",String.class);//java.lang.NoSuchMethodException: getDeviceId [class java.lang.String]
-//           for (int i = 0; i < 2; i++) {
-//               Logger.e("xixionghui","获取到的第"+i+"IMEI号码： "+method.invoke(String.class,i));
-//
-//           }
 
-            Method[] declaredMethods = classFile.getDeclaredMethods();
-           for (int i = 0; i < declaredMethods.length; i++) {
-               Method method = declaredMethods[i];
-               Logger.e("xixionghui","获取到的方法名称："+method.getName());
-           }
-
-       } catch (Exception e) {
-           e.printStackTrace();
-       }
-
-   }
 }

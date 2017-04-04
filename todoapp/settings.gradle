@@ -1,1 +1,1 @@
-include ':app', ':001Common', ':example'
+include ':app', ':001Common', ':example', ':eventline'
