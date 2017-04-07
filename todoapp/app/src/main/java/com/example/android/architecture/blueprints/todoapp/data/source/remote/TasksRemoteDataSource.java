@@ -86,6 +86,7 @@ public class TasksRemoteDataSource implements TasksDataSource {
         final Task task = TASKS_SERVICE_DATA.get(taskId);
 
         // Simulate network by delaying the execution.
+        // 通过延迟执行来模拟网络请求
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

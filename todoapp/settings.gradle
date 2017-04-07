@@ -1,1 +1,1 @@
-include ':app', ':001Common', ':example', ':eventline'
+include ':app', ':001Common', ':example', ':eventline', ':javalib'

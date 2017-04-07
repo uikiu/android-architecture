@@ -31,6 +31,9 @@ import java.util.List;
  */
 public interface TasksContract {
 
+    /**
+     * UI view :activity|| fragment
+     */
     interface View extends BaseView<Presenter> {
 
         void setLoadingIndicator(boolean active);//indicator指示剂

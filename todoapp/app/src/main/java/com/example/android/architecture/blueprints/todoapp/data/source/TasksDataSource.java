@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * Main entry point for accessing tasks data.
- * 访问任务数据的主入口
+ * 访问"任务"数据的主入口
  * <p>
  * For simplicity, only getTasks() and getTask() have callbacks. Consider adding callbacks to other
  * methods to inform the user of network/database errors or successful operations.
