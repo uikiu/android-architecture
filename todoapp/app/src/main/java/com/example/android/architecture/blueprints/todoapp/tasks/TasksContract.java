@@ -32,7 +32,7 @@ import java.util.List;
 public interface TasksContract {
 
     /**
-     * UI view :activity|| fragment
+     * TasksFragment实现此接口。接口方法对应"界面功能"
      */
     interface View extends BaseView<Presenter> {
 
@@ -71,6 +71,9 @@ public interface TasksContract {
         void showFilteringPopUpMenu();
     }
 
+    /**
+     * TasksPresenter实现此方法，接口方法对应"功能实现"
+     */
     interface Presenter extends BasePresenter {
 
         void result(int requestCode, int resultCode);

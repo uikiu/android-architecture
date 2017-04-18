@@ -21,14 +21,25 @@ public class DrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
 
-        // 1.设置toolbar Set up the toolbar.
+        initView();
+    }
+
+    /**
+     * 初始化View
+     * 1. 设置Toolbar
+     * 2. 初始化抽屉布局和抽屉导航
+     */
+    private void initView() {
+        // 1.设置toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_Layout);
+        // 2.初始化抽屉布局和抽屉导航
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerNavigation = (NavigationView) findViewById(R.id.drawer_Navigation);
     }
+
+
 }
