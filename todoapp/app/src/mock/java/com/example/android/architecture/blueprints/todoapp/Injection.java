@@ -30,6 +30,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Enables injection of mock implementations for
  * {@link TasksDataSource} at compile time. This is useful for testing, since it allows us to use
  * a fake instance of the class to isolate the dependencies and run a test hermetically.
+ * //------------------------------------------------------------------------------------------------------
+ * injection 注解、注射
+ * mock 模拟的、虚假的
+ * fake 假的，伪造的
+ * 在编译时使用注解模拟实现{@link TasksDataSource}。这对测试非常有用。它允许我们使用类的假实例来隔离依赖项并运行一个测试。
+ *
  */
 public class Injection {
 

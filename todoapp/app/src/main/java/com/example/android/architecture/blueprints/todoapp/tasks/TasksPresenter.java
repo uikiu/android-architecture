@@ -47,6 +47,11 @@ public class TasksPresenter implements TasksContract.Presenter {
 
     private boolean mFirstLoad = true;
 
+	/**
+	* Presenter是ui和data的中间者。
+	* 构造Presenter必须提供：数据仓库&&功能View。并且二者均不能为空
+	*
+	*/
     public TasksPresenter(@NonNull TasksRepository tasksRepository, @NonNull TasksContract.View tasksView) {
         mTasksRepository = checkNotNull(tasksRepository, "tasksRepository cannot be null");
         mTasksView = checkNotNull(tasksView, "tasksView cannot be null!");
