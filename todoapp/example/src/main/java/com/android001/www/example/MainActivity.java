@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.android001.common.hardware.sim.DeviceIdSelector;
 import com.android001.common.hardware.sim.common.CommonDeviceIDRetriever;
 import com.android001.common.hardware.sim.common.DeviceIdDAO;
 import com.android001.common.hardware.sim.huaweiContact.HWDeviceIDRetriever;
@@ -37,9 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-//        DeviceIDRetriever retriever = null;
-        CommonDeviceIDRetriever.getInstance().addDeviceId();
-        HWDeviceIDRetriever.getInstance().addDeviceId();
+        DeviceIdSelector.getInstance().addDeviceID();
         switch (v.getId()) {
             case R.id.print:
                 Logger.e(DeviceIdDAO.getInstance().getImEiAnyWay());

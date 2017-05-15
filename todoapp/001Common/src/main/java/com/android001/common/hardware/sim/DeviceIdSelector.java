@@ -20,7 +20,7 @@ public class DeviceIdSelector {
         private static final DeviceIdSelector INSTANCE = new DeviceIdSelector();
     }
 
-    public DeviceIdSelector getInstance() {
+    public static DeviceIdSelector getInstance() {
         return DeviceIdSelectorHolder.INSTANCE;
     }
 
