@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.android001.www.example"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion 9
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
 
@@ -108,4 +108,6 @@ dependencies {
     compile project(':001Common')
     compile 'com.orhanobut:logger:1.15'
     compile 'com.android.support:design:25.1.0'
+//    compile project(':001storage')
+//    compile project(':telephony_tools_r22')
 }

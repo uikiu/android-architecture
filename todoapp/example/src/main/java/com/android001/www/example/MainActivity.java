@@ -1,25 +1,23 @@
 package com.android001.www.example;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.android001.common.hardware.IMTools;
-import com.android001.common.hardware.sim.SimFactoryManager;
-import com.android001.common.hardware.wifi.IpUtils;
+import com.android001.common.hardware.sim.DeviceIDRetriever;
+import com.android001.common.hardware.sim.common.CommonDeviceIDRetriever;
+import com.android001.common.hardware.sim.common.DeviceIdManager;
+import com.android001.common.hardware.sim.huaweiContact.HWDeviceIDRetriever;
 import com.orhanobut.logger.Logger;
 
-import java.lang.reflect.Method;
-import java.util.HashSet;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
-    Button mPrint,mDrawerNavigation;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "MainActivity";
+    Button mPrint, mDrawerNavigation;
 
 
     @Override
@@ -34,21 +32,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_TIME_CHANGED);
-        this.registerReceiver(new CalendarChangeReceiver(),filter);
+        this.registerReceiver(new CalendarChangeReceiver(), filter);
     }
 
-    @Override
 
+    @Override
     public void onClick(View v) {
+//        DeviceIDRetriever retriever = null;
+        CommonDeviceIDRetriever.getInstance().addDeviceId();
+        HWDeviceIDRetriever.getInstance().addDeviceId();
         switch (v.getId()) {
             case R.id.print:
-                Log.i("xixionghui","获取到的ip = "+IpUtils.getWIFILocalIpAdress(this));
+                Logger.e(DeviceIdManager.getInstance().getImEiAnyWay());
                 break;
             case R.id.drawerNavigation:
-                startActivity(new Intent(this,DrawerActivity.class));
+                showDialog("IMEI&&MEID",DeviceIdManager.getInstance().getImEiAnyWay());
                 break;
         }
     }
 
+
+    private void showDialog(String tile,String msg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(tile);
+        builder.setMessage(msg);
+        builder.create().show();
+    }
 
 }

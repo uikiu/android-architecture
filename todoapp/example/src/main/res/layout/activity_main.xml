@@ -14,10 +14,10 @@
         android:id="@+id/print"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="开始打印" />
+        android:text="打印：IMEI和MEID" />
 
     <Button
-        android:text="抽屉导航"
+        android:text="显示：IMEI和MEID"
         android:layout_below="@id/print"
         android:id="@+id/drawerNavigation"
         android:layout_width="wrap_content"

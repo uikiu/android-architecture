@@ -1,5 +1,6 @@
 package com.android001.common.hardware;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.IBinder;
@@ -18,7 +19,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -50,65 +50,56 @@ public final class IMTools {
                 .getSystemService(Context.TELEPHONY_SERVICE);
         addImEi(tm.getDeviceId());
         addImSi(tm.getSubscriberId());
-        com.orhanobut.logger.Logger.e("从TelephonyManager中获取IMSI和SubscriberId");
+
 //        if (isCompleteCheck()) {
 //            return;
 //        }
         //---------------------------
         initIMOfMTK(tm);
-        com.orhanobut.logger.Logger.e("===========initIMOfMTK===========");
 //        if (isCompleteCheck()) {
 //            return;
 //        }
         //---------------------------
 
         initIMOfQua(mContext);
-        com.orhanobut.logger.Logger.e("===========initIMOfQua===========");
 //        if (isCompleteCheck()) {
 //            return;
 //        }
         //---------------------------
         initIMOfSpread(mContext, tm);
-        com.orhanobut.logger.Logger.e("===========initIMOfSpread===========");
 //        if (isCompleteCheckImEi()) {
 //            return;
 //        }
         //---------------------------
 
         initImeiExtra(mContext);
-        com.orhanobut.logger.Logger.e("===========initImeiExtra===========");
 //        if (isCompleteCheckImEi()) {
 //            return;
 //        }
         //---------------------------
 
         initImeiByHuaWei();
-        com.orhanobut.logger.Logger.e("===========initImeiByHuaWei===========");
 //        if (isCompleteCheckImEi()) {
 //            return;
 //        }
         //---------------------------
 
         initImeiSM7000(mContext);
-        com.orhanobut.logger.Logger.e("===========initImeiSM7000===========");
 //        if (isCompleteCheckImEi()) {
 //            return;
 //        }
         //---------------------------
         initImeiVivo();
-        com.orhanobut.logger.Logger.e("===========initImeiVivo===========");
 //        if (isCompleteCheckImEi()) {
 //            return;
 //        }
         //---------------------------
         initImeiHuaWei2(mContext);
-        com.orhanobut.logger.Logger.e("===========initImeiHuaWei2===========");
 //        if (isCompleteCheckImEi()) {
 //            return;
 //        }
         //---------------------------
         initImeiSMG3812(mContext);
-        com.orhanobut.logger.Logger.e("===========initImeiSMG3812===========");
 //        if (isCompleteCheckImEi()) {
 //            return;
 //        }
@@ -116,11 +107,30 @@ public final class IMTools {
 //        if (isCompleteCheckImEi()) {
 //            return;
 //        }
+
+        try {
+            getIMEIWtihId(mContext);
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
         initImeiByLog();
-        com.orhanobut.logger.Logger.e("===========initImeiByLog===========");
 
     }
 
+    @TargetApi(23)
+    private void getIMEIWtihId(Context mContext) {
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+            for (int i = 0; i < 3; i++) {
+                String imei = telephonyManager.getDeviceId(i);
+                if(null!=imei&&imei.trim().length()>0) {
+                    addImEi(imei);
+                }
+            }
+        } catch (Throwable t) {
+        }
+
+    }
 
 
     void addImEi(String imEi) {
@@ -274,7 +284,6 @@ public final class IMTools {
             addImEi(imei_2);
 
         } catch (Exception | Error ignored) {
-            com.orhanobut.logger.Logger.e("initIMOfMTK时，发生异常");
         }
     }
 
@@ -299,7 +308,6 @@ public final class IMTools {
             addImSi(imsi_1);
             addImSi(imsi_2);
         } catch (Exception | Error ignored) {
-            com.orhanobut.logger.Logger.e("initIMOfQua时，发生异常");
         }
     }
 
@@ -326,7 +334,6 @@ public final class IMTools {
             addImSi(imsi_1);
             addImSi(imsi_2);
         } catch (Exception | Error ignored) {
-            com.orhanobut.logger.Logger.e("initIMOfSpread时，发生异常");
         }
     }
 
@@ -363,10 +370,8 @@ public final class IMTools {
 
 
         } catch (Exception e) {
-            com.orhanobut.logger.Logger.e("initImeiByLog时，发生异常");
 
         } catch (Error e) {
-            com.orhanobut.logger.Logger.e("initImeiByLog时，发生异常");
         } finally {
             try {
                 if (bufferedreader != null)
@@ -425,8 +430,9 @@ public final class IMTools {
 
             }
         } catch (Exception | Error ignored) {
-            com.orhanobut.logger.Logger.e("initImeiExtra时，发生异常");
+
         }
+
     }
 
 
@@ -437,7 +443,6 @@ public final class IMTools {
             strMEID = (String) getNVMEID.invoke(0, 0);
             addImEi(strMEID);
         } catch (Exception | Error ignored) {
-            com.orhanobut.logger.Logger.e("initImeiByHuaWei时，发生异常");
         }
     }
 
@@ -462,7 +467,6 @@ public final class IMTools {
             addImEi(strCDMAIMEI);
 
         } catch (Exception | Error ignored) {
-            com.orhanobut.logger.Logger.e("initImeiHuaWei2时，发生异常");
         }
 
     }
@@ -482,7 +486,6 @@ public final class IMTools {
 
         } catch (Exception | Error e) {
             // TODO Auto-generated catch block
-            com.orhanobut.logger.Logger.e("initImeiVivo时，发生异常");
         }
     }
 
@@ -498,7 +501,6 @@ public final class IMTools {
             addImEi(IMEI2);
 
         } catch (Exception | Error e) {
-            com.orhanobut.logger.Logger.e("initImeiSM7000时，发生异常");
         }
 
     }
@@ -520,7 +522,6 @@ public final class IMTools {
 
         } catch (Exception | Error e) {
             // TODO Auto-generated catch block
-            com.orhanobut.logger.Logger.e("initImeiSMG3812时，发生异常");
         }
     }
 

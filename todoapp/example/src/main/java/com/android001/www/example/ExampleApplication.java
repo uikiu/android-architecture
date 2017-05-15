@@ -2,7 +2,6 @@ package com.android001.www.example;
 
 import android.app.Application;
 
-import com.android001.common.app.AppHolder;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -13,8 +12,11 @@ public class ExampleApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.init("xixionghui");
-        AppHolder.getImp().initAppContext(this);
+        Logger.init("android001");
+        com.android001.www.example.AppHolder.getImp().initAppContext(this);
+        com.android001.common.app.AppHolder.getImp().initAppContext(this);
+//        com.android001.storage.AppHolder.getImp().initAppContext(this);
+
     }
 }
 
