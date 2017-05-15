@@ -8,9 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.android001.common.hardware.sim.DeviceIDRetriever;
 import com.android001.common.hardware.sim.common.CommonDeviceIDRetriever;
-import com.android001.common.hardware.sim.common.DeviceIdManager;
+import com.android001.common.hardware.sim.common.DeviceIdDAO;
 import com.android001.common.hardware.sim.huaweiContact.HWDeviceIDRetriever;
 import com.orhanobut.logger.Logger;
 
@@ -43,10 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         HWDeviceIDRetriever.getInstance().addDeviceId();
         switch (v.getId()) {
             case R.id.print:
-                Logger.e(DeviceIdManager.getInstance().getImEiAnyWay());
+                Logger.e(DeviceIdDAO.getInstance().getImEiAnyWay());
                 break;
             case R.id.drawerNavigation:
-                showDialog("IMEI&&MEID",DeviceIdManager.getInstance().getImEiAnyWay());
+                showDialog("IMEI&&MEID", DeviceIdDAO.getInstance().getImEiAnyWay());
                 break;
         }
     }

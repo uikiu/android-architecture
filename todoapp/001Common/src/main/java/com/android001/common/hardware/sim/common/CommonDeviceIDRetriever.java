@@ -43,7 +43,7 @@ public class CommonDeviceIDRetriever extends BaseDeviceIDRetriever {
     void addDeviceStand() {
         try {
             String deviceId = mTelephonyManager.getDeviceId();
-            DeviceIdManager.getInstance().addDeviceId(deviceId);
+            DeviceIdDAO.getInstance().addDeviceId(deviceId);
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class CommonDeviceIDRetriever extends BaseDeviceIDRetriever {
             for (int i = 0; i < 3; i++) {
                 String deviceId = telephonyManager.getDeviceId(i);
                 if (null != deviceId && deviceId.trim().length() > 0) {
-                    DeviceIdManager.getInstance().addDeviceId(deviceId);
+                    DeviceIdDAO.getInstance().addDeviceId(deviceId);
                 }
             }
         } catch (Throwable t) {

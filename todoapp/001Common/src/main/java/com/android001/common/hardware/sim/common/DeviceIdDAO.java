@@ -8,21 +8,21 @@ import java.util.regex.Pattern;
  * Created by xixionghui on 2017/5/11.
  */
 
-public class DeviceIdManager {
+public class DeviceIdDAO {
 
 
     private static final String SPLIT = ",";
     private final HashSet<String> IM_EI_SET = new HashSet<>();
     private static final String DEFAULT_DEVICE_ID = "100000000000000";
 
-    private DeviceIdManager() {
+    private DeviceIdDAO() {
     }
 
     static class DeviceIdManagerHolder {
-        private static final DeviceIdManager INSTANCE = new DeviceIdManager();
+        private static final DeviceIdDAO INSTANCE = new DeviceIdDAO();
     }
 
-    public static DeviceIdManager getInstance() {
+    public static DeviceIdDAO getInstance() {
         return DeviceIdManagerHolder.INSTANCE;
     }
 
@@ -94,5 +94,9 @@ public class DeviceIdManager {
             return DEFAULT_DEVICE_ID;
         }
         return translateSetToString(IM_EI_SET);
+    }
+
+    public HashSet<String> getDeviceIdWithSet (){
+        return IM_EI_SET;
     }
 }

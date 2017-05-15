@@ -17,35 +17,30 @@ import java.util.Set;
 
 public class RomBuildProperties {
 
-    private volatile static RomBuildProperties instance;
-
-
-    static {
-        try {
-            instance = new RomBuildProperties();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static RomBuildProperties getInstance() {
-        try {
-            if (null == instance) instance = new RomBuildProperties();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return instance;
-    }
-
 
     //---
 
     private Properties properties;
 
-    public RomBuildProperties() throws IOException {
-        properties = new Properties();
-        properties.load(new FileInputStream(new File(Environment.getRootDirectory(), "build.prop")));
+    private RomBuildProperties() {
+
+        try {
+            properties = new Properties();
+            properties.load(new FileInputStream(new File(Environment.getRootDirectory(), "build.prop")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+
+    private static class RomBuildPropertiesHolder {
+        private static final RomBuildProperties INSTANCE = new RomBuildProperties();
+    }
+
+    public static RomBuildProperties getInstance() {
+        return RomBuildPropertiesHolder.INSTANCE;
+    }
+
 
     public boolean containsKey(final Object key) {
         return properties.containsKey(key);

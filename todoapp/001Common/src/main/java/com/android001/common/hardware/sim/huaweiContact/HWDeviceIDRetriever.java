@@ -3,7 +3,7 @@ package com.android001.common.hardware.sim.huaweiContact;
 import android.os.Build;
 
 import com.android001.common.hardware.sim.BaseDeviceIDRetriever;
-import com.android001.common.hardware.sim.common.DeviceIdManager;
+import com.android001.common.hardware.sim.common.DeviceIdDAO;
 
 /**
  * Created by xixionghui on 2017/5/10.
@@ -52,13 +52,13 @@ public class HWDeviceIDRetriever extends BaseDeviceIDRetriever {
             String imei1 = SimFactoryManager.getImei(0);
             String imei2 = SimFactoryManager.getImei(1);
 
-            DeviceIdManager.getInstance().addDeviceId(imei1);
-            DeviceIdManager.getInstance().addDeviceId(imei2);
+            DeviceIdDAO.getInstance().addDeviceId(imei1);
+            DeviceIdDAO.getInstance().addDeviceId(imei2);
         }
 
         String meid1 = SimFactoryManager.getMeid(0);
 //        addDeviceId(meid1);
-        DeviceIdManager.getInstance().addDeviceId(meid1);
+        DeviceIdDAO.getInstance().addDeviceId(meid1);
 
     }
 
@@ -67,15 +67,15 @@ public class HWDeviceIDRetriever extends BaseDeviceIDRetriever {
         String imei1 = SimFactoryManager.getImei(0);
         String imei2 = SimFactoryManager.getImei(1);
 
-        DeviceIdManager.getInstance().addDeviceId(imei1);
-        DeviceIdManager.getInstance().addDeviceId(imei2);
+        DeviceIdDAO.getInstance().addDeviceId(imei1);
+        DeviceIdDAO.getInstance().addDeviceId(imei2);
 
         if (Build.VERSION.SDK_INT>=23) {
             String deviceId1 = SimFactoryManager.getDeviceId(0);
             String deviceId2 = SimFactoryManager.getDeviceId(1);
 
-            DeviceIdManager.getInstance().addDeviceId(deviceId1);
-            DeviceIdManager.getInstance().addDeviceId(deviceId2);
+            DeviceIdDAO.getInstance().addDeviceId(deviceId1);
+            DeviceIdDAO.getInstance().addDeviceId(deviceId2);
 
         }
     }

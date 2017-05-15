@@ -54,7 +54,7 @@ public class OSUtils {
     private static final String SAMSUNG_VALUE= "samsung";
 
 
-    public static String getROMName(){
+    public static ROM_TYPE getROMName(){
         ROM_TYPE rom_type = ROM_TYPE.UNKNOW;
 
         RomBuildProperties romBuildProperties = RomBuildProperties.getInstance();
@@ -79,7 +79,7 @@ public class OSUtils {
             rom_type = ROM_TYPE.TOUCH_WIZ;
         }
 
-        return rom_type.uiName;
+        return rom_type;
     }
 
 }
