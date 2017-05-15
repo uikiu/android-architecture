@@ -53,18 +53,3 @@ captures/
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
-
-example.jks
-libs/
-src/main/res/drawable/
-001Common/libs/
-001Common/src/main/java/com/android001/common/hardware/bluetooth/
-001Common/src/main/java/com/android001/common/hardware/wifi/
-001Common/src/main/java/com/android001/common/os/
-001Common/src/main/res/drawable/
-example/example.jks
-example/libs/
-example/src/main/res/drawable/
-src/main/java/com/android001/common/hardware/bluetooth/
-src/main/java/com/android001/common/hardware/wifi/
-src/main/java/com/android001/common/os/

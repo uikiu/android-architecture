@@ -1,4 +1,4 @@
-package com.android001.common.hardware.sim;
+package com.android001.common;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;

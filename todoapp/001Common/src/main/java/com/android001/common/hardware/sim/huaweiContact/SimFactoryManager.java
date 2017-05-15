@@ -8,10 +8,9 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android001.common.app.AppHolder;
-import com.android001.common.hardware.sim.CommonUtilMethods;
+import com.android001.common.CommonUtilMethods;
 import com.orhanobut.logger.Logger;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
