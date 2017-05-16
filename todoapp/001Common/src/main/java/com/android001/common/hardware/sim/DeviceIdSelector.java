@@ -2,7 +2,12 @@ package com.android001.common.hardware.sim;
 
 import com.android001.common.hardware.sim.common.CommonDeviceIDRetriever;
 import com.android001.common.hardware.sim.huaweiContact.HWDeviceIDRetriever;
+import com.android001.common.hardware.sim.vivo.VivoSIMInfoRetriever;
+import com.android001.common.hardware.sim.vivo.utils.VivoSimCardUtils;
+import com.android001.common.hardware.sim.vivo.utils.VivoTelephonyUtils;
+import com.android001.common.os.android.SystemPropertiesAccessor;
 import com.android001.common.os.others.OSUtils;
+import com.orhanobut.logger.Logger;
 
 
 /**
@@ -37,6 +42,9 @@ public class DeviceIdSelector {
             case COLOR_OS://oppo
                 break;
             case FUNTOUCH_UI://VIVO
+                VivoSIMInfoRetriever vivoSIMInfoRetriever = new VivoSIMInfoRetriever();
+                vivoSIMInfoRetriever.addDeviceId();
+
                 break;
             case EUI://乐视
                 break;

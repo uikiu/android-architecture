@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDrawerNavigation = (Button) findViewById(R.id.drawerNavigation);
         mDrawerNavigation.setOnClickListener(this);
         //
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_TIME_CHANGED);
-        this.registerReceiver(new CalendarChangeReceiver(), filter);
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction(Intent.ACTION_TIME_CHANGED);
+//        this.registerReceiver(new CalendarChangeReceiver(), filter);
     }
 
 
