@@ -4,8 +4,6 @@ import com.android001.common.hardware.sim.common.CommonDeviceIDRetriever;
 import com.android001.common.hardware.sim.huaweiContact.HWDeviceIDRetriever;
 import com.android001.common.os.others.OSUtils;
 
-import static com.android001.common.os.others.OSUtils.ROM_TYPE.FLYME;
-import static com.android001.common.os.others.OSUtils.ROM_TYPE.MIUI;
 
 /**
  * Created by xixionghui on 2017/5/15.
