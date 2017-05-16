@@ -32,9 +32,10 @@ import java.util.List;
 public interface TasksContract {
 
     /**
+     * 面向用户---由Fragment继承
      * TasksFragment实现此接口。接口方法对应"界面功能"
      */
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView<Presenter> {//这里的Presenter已经确定数据操作接口
 
         void setLoadingIndicator(boolean active);//indicator指示剂
 
@@ -72,6 +73,7 @@ public interface TasksContract {
     }
 
     /**
+     * 面向数据
      * TasksPresenter实现此方法，接口方法对应"功能实现"
      */
     interface Presenter extends BasePresenter {
