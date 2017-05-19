@@ -23,7 +23,7 @@ public class SystemPropertiesAccessor {
             final Method getMethod = systemPropertiesClazz.getMethod("get",String.class);
             getMethod.setAccessible(true);
             getResult = (String) getMethod.invoke(null,key);
-        } catch (Exception e) {
+        } catch (Throwable e) {
             e.printStackTrace();
             getResult = null;
         }
@@ -43,7 +43,19 @@ public class SystemPropertiesAccessor {
             final Class<?> systemProperties = Class.forName("android.os.SystemProperties");
             final Method get = systemProperties.getMethod("get", String.class, String.class);
             return (String) get.invoke(null, key, defaultValue);
-        } catch (Exception e) {
+        } catch (Throwable e) {
+            // This should never happen
+            Log.e(TAG, "Exception while getting system property: ", e);
+            return defaultValue;
+        }
+    }
+
+    public static boolean getBoolean(String key, boolean defaultValue) {
+        try {
+            final Class<?> systemProperties = Class.forName("android.os.SystemProperties");
+            final Method get = systemProperties.getMethod("getBoolean", String.class, boolean.class);
+            return (boolean) get.invoke(null, key, defaultValue);
+        } catch (Throwable e) {
             // This should never happen
             Log.e(TAG, "Exception while getting system property: ", e);
             return defaultValue;
