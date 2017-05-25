@@ -38,4 +38,9 @@ ext {
     runnerVersion = '0.5'
     rulesVersion = '0.5'
     espressoVersion = '2.2.2'
+
+    //kotlin
+    kotlin_version = '1.0.4'
+//    anko_version =
+
 }

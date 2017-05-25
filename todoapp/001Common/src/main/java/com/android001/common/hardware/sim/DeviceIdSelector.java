@@ -3,6 +3,7 @@ package com.android001.common.hardware.sim;
 import android.util.Log;
 
 import com.android001.common.hardware.sim.common.CommonDeviceIDRetriever;
+import com.android001.common.hardware.sim.gione.GioneeDeviceIDRetriever;
 import com.android001.common.hardware.sim.huaweiContact.HWDeviceIDRetriever;
 import com.android001.common.hardware.sim.oppo.OppoDeviceIDRetriever;
 import com.android001.common.hardware.sim.vivo.VivoSIMInfoRetriever;
@@ -60,6 +61,8 @@ public class DeviceIdSelector {
             case COOLUI://酷派
                 break;
             case AMIGO://金立
+                GioneeDeviceIDRetriever gioneeDeviceIDRetriever = new GioneeDeviceIDRetriever();
+                gioneeDeviceIDRetriever.addDeviceId();
                 break;
             case TOUCH_WIZ://三星
                 break;
