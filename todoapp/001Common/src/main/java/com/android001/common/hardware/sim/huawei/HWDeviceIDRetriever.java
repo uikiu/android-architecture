@@ -1,4 +1,4 @@
-package com.android001.common.hardware.sim.huaweiContact;
+package com.android001.common.hardware.sim.huawei;
 
 import android.os.Build;
 

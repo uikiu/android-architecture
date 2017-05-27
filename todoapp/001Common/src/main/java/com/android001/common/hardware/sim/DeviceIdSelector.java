@@ -4,14 +4,11 @@ import android.util.Log;
 
 import com.android001.common.hardware.sim.common.CommonDeviceIDRetriever;
 import com.android001.common.hardware.sim.gione.GioneeDeviceIDRetriever;
-import com.android001.common.hardware.sim.huaweiContact.HWDeviceIDRetriever;
+import com.android001.common.hardware.sim.huawei.HWDeviceIDRetriever;
 import com.android001.common.hardware.sim.leEco.LeEcoDeviceIdRetriever;
 import com.android001.common.hardware.sim.meizu.MeiZuDeviceIdRetriever;
 import com.android001.common.hardware.sim.oppo.OppoDeviceIDRetriever;
 import com.android001.common.hardware.sim.vivo.VivoSIMInfoRetriever;
-import com.android001.common.hardware.sim.vivo.utils.VivoSimCardUtils;
-import com.android001.common.hardware.sim.vivo.utils.VivoTelephonyUtils;
-import com.android001.common.os.android.SystemPropertiesAccessor;
 import com.android001.common.os.others.OSUtils;
 import com.orhanobut.logger.Logger;
 

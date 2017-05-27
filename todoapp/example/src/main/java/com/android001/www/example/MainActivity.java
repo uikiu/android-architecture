@@ -14,9 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.android001.common.hardware.sim.DeviceIdSelector;
-import com.android001.common.hardware.sim.common.CommonDeviceIDRetriever;
 import com.android001.common.hardware.sim.common.DeviceIdDAO;
-import com.android001.common.hardware.sim.huaweiContact.HWDeviceIDRetriever;
 import com.orhanobut.logger.Logger;
 
 
