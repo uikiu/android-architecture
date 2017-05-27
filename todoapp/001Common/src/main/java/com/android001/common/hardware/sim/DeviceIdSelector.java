@@ -14,7 +14,7 @@ import com.orhanobut.logger.Logger;
 
 
 /**
- * Created by xixionghui on 2017/5/15.
+ * Created by android001 on 2017/5/15.
  */
 
 public class DeviceIdSelector {
@@ -37,18 +37,19 @@ public class DeviceIdSelector {
         commonDeviceIDRetriever.addDeviceId();
         //2. 分品牌方法
         OSUtils.ROM_TYPE romType = OSUtils.getROMName();
+        BaseDeviceIDRetriever deviceIDRetriever;
         switch (romType) {
             case UNKNOW://-----未知系统：启用默认
                 Log.e(TAG,"未知的系统");
-                CommonDeviceIDRetriever.getInstance().addDeviceId();
             case MIUI://小米
                 break;
             case FLYME://魅族
-                MeiZuDeviceIdRetriever meiZuDeviceIdRetriever = new MeiZuDeviceIdRetriever();
-                meiZuDeviceIdRetriever.addDeviceId();
+                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(MeiZuDeviceIdRetriever.class);
+                if (null!=deviceIDRetriever) deviceIDRetriever.addDeviceId();
                 break;
             case EMUI://华为
-                HWDeviceIDRetriever.getInstance().addDeviceId();
+                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(HWDeviceIDRetriever.class);
+                if (null!=deviceIDRetriever) deviceIDRetriever.addDeviceId();
                 break;
             case COLOR_OS://oppo
                 OppoDeviceIDRetriever oppoDeviceIDRetriever = new OppoDeviceIDRetriever();

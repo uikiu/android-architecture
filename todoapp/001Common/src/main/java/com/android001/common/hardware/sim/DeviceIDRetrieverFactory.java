@@ -6,9 +6,9 @@ package com.android001.common.hardware.sim;
 
 public class DeviceIDRetrieverFactory {
 
-    public static DeviceIDRetriever createDeviceIDRetriever(Class<? extends DeviceIDRetriever> clazz) {
+    public static BaseDeviceIDRetriever createDeviceIDRetriever(Class<? extends BaseDeviceIDRetriever> clazz) {
         try {
-            clazz.newInstance();
+            return  clazz.newInstance();
         } catch (Throwable e) {
             e.printStackTrace();
         }
