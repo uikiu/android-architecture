@@ -1,54 +1,43 @@
-package com.android001.common.hardware.sim.common;
+package com.android001.common.hardware.sim.leEco;
 
-import android.content.Context;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import com.android001.common.CommonUtilMethods;
-import com.android001.common.app.AppHolder;
 import com.android001.common.hardware.sim.BaseDeviceIDRetriever;
+import com.android001.common.hardware.sim.common.DeviceIdDAO;
+import com.android001.common.os.android.SDKTools;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /**
- * 通用获取deviceId方式
+ * Created by android on 2017/5/26.
  */
 
-public class CommonDeviceIDRetriever extends BaseDeviceIDRetriever {
-
-    private CommonDeviceIDRetriever() {
-        init();
-    }
-
-    static class CommonDeviceIDManagerHolder {
-        private static final CommonDeviceIDRetriever INSTANCE = new CommonDeviceIDRetriever();
-    }
-
-    public static CommonDeviceIDRetriever getInstance() {
-        return CommonDeviceIDManagerHolder.INSTANCE;
-    }
-
-    //---
-
-
+public class LeEcoDeviceIdRetriever extends BaseDeviceIDRetriever {
+    private static final String TAG = "LeEcoDeviceIdRetriever";
     @Override
     public void addDeviceId() {
+
         try {
             //1. 获取TelephonyManager
             TelephonyManager telephonyManager = CommonUtilMethods.getTelephonyManager();
-            DeviceIdDAO.getInstance().addDeviceId(telephonyManager.getDeviceId());
-            //2. 获取slotIds
-            int[] slotIds = getSlotIds(telephonyManager);
-            //3. deviceId
-            addMeidOrImei(telephonyManager,"getMeid",slotIds);
-            addMeidOrImei(telephonyManager,"getImei",slotIds);
-            addMeidOrImei(telephonyManager,"getDeviceId",slotIds);
+
+            //2. 获取meid
+            addMeidOrImei(telephonyManager,"getMeid");
+            //3. 获取imei
+            addMeidOrImei(telephonyManager,"getImei");
+            //3. 获取deviceId
+            addMeidOrImei(telephonyManager,"getDeviceId");
         } catch (Throwable e) {
             e.printStackTrace();
         }
-    }
 
+
+    }
 
     private static int[] getSlotIds(TelephonyManager telephonyManager) {
         int[] iArr = null;
@@ -74,7 +63,7 @@ public class CommonDeviceIDRetriever extends BaseDeviceIDRetriever {
 
     //public String getMeid()
     //public String getMeid(int slotIndex)
-    public static void addMeidOrImei(TelephonyManager telephonyManager,String methodName ,int[] slotIds)
+    public static void addMeidOrImei(TelephonyManager telephonyManager,String methodName)
     {
         try {
             Class<?> telephonyManagerClazz = Class.forName("android.telephony.TelephonyManager");
@@ -91,6 +80,7 @@ public class CommonDeviceIDRetriever extends BaseDeviceIDRetriever {
             Method getMeidMethod2 = telephonyManagerClazz.getDeclaredMethod(methodName,int.class);
             if (null==getMeidMethod2) return;
             getMeidMethod2.setAccessible(true);
+            int[] slotIds = getSlotIds(telephonyManager);
             for (int i = 0; i < slotIds.length; i++) {
                 String deviceId = (String) getMeidMethod2.invoke(telephonyManager,slotIds[i]);
                 DeviceIdDAO.getInstance().addDeviceId(deviceId);
@@ -100,6 +90,4 @@ public class CommonDeviceIDRetriever extends BaseDeviceIDRetriever {
         }
 
     }
-
-
 }

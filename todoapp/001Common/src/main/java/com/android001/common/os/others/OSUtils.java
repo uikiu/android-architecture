@@ -41,7 +41,9 @@ public class OSUtils {
     private static final String FLYME_KEY_1 = "ro.flyme.published";
     private static final String FLYME_KEY_2 = "ro.meizu.setupwizard.flyme";
     //乐视
-    private static final String EUI_KEY = "ro.leui_oem_unlock_enable";
+    private static final String EUI_KEY1 = "ro.leui_oem_unlock_enable";
+    private static final String EUI_KEY2 = "ro.letv.eui";
+    private static final String EUI_KEY3 = "ro.letv.release.version";
     //oppo
     private static final String COLOROS_KEY = "ro.build.version.opporom";
     //vivo
@@ -67,7 +69,7 @@ public class OSUtils {
             rom_type = ROM_TYPE.MIUI;
         } else if (romBuildProperties.containsKey(FLYME_KEY_1)||romBuildProperties.containsKey(FLYME_KEY_2)) {//魅族
             rom_type = ROM_TYPE.FLYME;
-        }else if (romBuildProperties.containsKey(EUI_KEY)){//乐视
+        }else if (romBuildProperties.containsKey(EUI_KEY1)||romBuildProperties.containsKey(EUI_KEY2)||romBuildProperties.containsKey(EUI_KEY3)){//乐视
             rom_type = ROM_TYPE.EUI;
         }else if (romBuildProperties.containsKey(COLOROS_KEY)) {//oppo
             rom_type = ROM_TYPE.COLOR_OS;

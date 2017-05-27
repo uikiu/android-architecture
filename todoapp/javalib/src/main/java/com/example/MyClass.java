@@ -1,13 +1,12 @@
 package com.example;
 
-import javax.management.StringValueExp;
+import com.android001.enumeration.EnumDefinition;
 
 public class MyClass {
 
 
     public static void main(String...args){
-        MyClass myClass = new MyClass();
-        myClass.synchronizedTest();
+
     }
 
     private void synchronizedTest(){

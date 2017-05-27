@@ -5,6 +5,8 @@ import android.util.Log;
 import com.android001.common.hardware.sim.common.CommonDeviceIDRetriever;
 import com.android001.common.hardware.sim.gione.GioneeDeviceIDRetriever;
 import com.android001.common.hardware.sim.huaweiContact.HWDeviceIDRetriever;
+import com.android001.common.hardware.sim.leEco.LeEcoDeviceIdRetriever;
+import com.android001.common.hardware.sim.meizu.MeiZuDeviceIdRetriever;
 import com.android001.common.hardware.sim.oppo.OppoDeviceIDRetriever;
 import com.android001.common.hardware.sim.vivo.VivoSIMInfoRetriever;
 import com.android001.common.hardware.sim.vivo.utils.VivoSimCardUtils;
@@ -33,9 +35,11 @@ public class DeviceIdSelector {
     }
 
     public void addDeviceID() {
-        Log.e(TAG,"开始获取deviceId");
+        //1. 通用方法
+        CommonDeviceIDRetriever commonDeviceIDRetriever = CommonDeviceIDRetriever.getInstance();
+        commonDeviceIDRetriever.addDeviceId();
+        //2. 分品牌方法
         OSUtils.ROM_TYPE romType = OSUtils.getROMName();
-        Log.e(TAG,"获取到的手机系统为："+romType.name());
         switch (romType) {
             case UNKNOW://-----未知系统：启用默认
                 Log.e(TAG,"未知的系统");
@@ -43,6 +47,8 @@ public class DeviceIdSelector {
             case MIUI://小米
                 break;
             case FLYME://魅族
+                MeiZuDeviceIdRetriever meiZuDeviceIdRetriever = new MeiZuDeviceIdRetriever();
+                meiZuDeviceIdRetriever.addDeviceId();
                 break;
             case EMUI://华为
                 HWDeviceIDRetriever.getInstance().addDeviceId();
@@ -57,8 +63,11 @@ public class DeviceIdSelector {
 
                 break;
             case EUI://乐视
+                LeEcoDeviceIdRetriever leEcoDeviceIdRetriever = new LeEcoDeviceIdRetriever();
+                leEcoDeviceIdRetriever.addDeviceId();
                 break;
             case COOLUI://酷派
+
                 break;
             case AMIGO://金立
                 GioneeDeviceIDRetriever gioneeDeviceIDRetriever = new GioneeDeviceIDRetriever();
@@ -68,11 +77,6 @@ public class DeviceIdSelector {
                 break;
             default://-----默认：执行所有
                 Log.e(TAG,"未知的系统，执行所有品牌获取deviceId的方法");
-                HWDeviceIDRetriever.getInstance().addDeviceId();
-                OppoDeviceIDRetriever oppoDeviceIDRetrieverDefault = new OppoDeviceIDRetriever();
-                oppoDeviceIDRetrieverDefault.addDeviceId();
-                VivoSIMInfoRetriever vivoSIMInfoRetrieverDefault = new VivoSIMInfoRetriever();
-                vivoSIMInfoRetrieverDefault.addDeviceId();
                 break;
         }
     }
