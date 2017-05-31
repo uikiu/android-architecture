@@ -1,4 +1,4 @@
-package com.android001.annotation;
+package com.android001.annotation.inherited;
 
 /**
 * class design：
@@ -7,7 +7,7 @@ package com.android001.annotation;
 */
 
 //鸟巢，工厂方法模式
-enum BirdNest {
+public enum BirdNest {
     SPARROW;
 
     //鸟类繁殖

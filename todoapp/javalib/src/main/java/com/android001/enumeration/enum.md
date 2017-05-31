@@ -8,8 +8,10 @@
 对比
 排序
 方法可自定义
-####枚举确定：
-枚举没有继承
+####枚举继承相关：
+* 枚举不允许被继承
+* 枚举可以继承接口
+* 枚举内可以定义抽象方法由实例实现
 
 ####注意
 在使用枚举的valueOf(String name),必须先判断name是否存在。见EnumDefinition : boolean contains (String name);

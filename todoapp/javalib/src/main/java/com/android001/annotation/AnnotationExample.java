@@ -1,5 +1,9 @@
 package com.android001.annotation;
 
+import com.android001.annotation.inherited.Bird;
+import com.android001.annotation.inherited.BirdNest;
+import com.android001.annotation.inherited.Desc;
+
 /**
 * class design：
 * @author android001

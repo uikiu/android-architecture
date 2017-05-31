@@ -1,4 +1,4 @@
-package com.android001.annotation;
+package com.android001.annotation.inherited;
 /**
 * class design：
 * @author android001
@@ -6,6 +6,6 @@ package com.android001.annotation;
 */
 
 @Desc(c = Desc.Color.White)
-abstract class Bird {
+public abstract class Bird {
     public abstract Desc.Color getColor();
 }

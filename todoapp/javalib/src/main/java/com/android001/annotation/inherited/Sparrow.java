@@ -1,4 +1,4 @@
-package com.android001.annotation;
+package com.android001.annotation.inherited;
 
 /**
 * class design：
