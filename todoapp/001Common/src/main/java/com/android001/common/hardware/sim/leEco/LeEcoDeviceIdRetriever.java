@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 /**
- * Created by android on 2017/5/26.
+ * Created by android001 on 2017/5/26.
  */
 
 public class LeEcoDeviceIdRetriever extends BaseDeviceIDRetriever {

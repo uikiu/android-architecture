@@ -6,7 +6,7 @@ import com.android001.common.hardware.sim.BaseDeviceIDRetriever;
 import com.android001.common.hardware.sim.common.DeviceIdDAO;
 
 /**
- * Created by xixionghui on 2017/5/10.
+ * Created by android001 on 2017/5/10.
  */
 
 public class HWDeviceIDRetriever extends BaseDeviceIDRetriever {

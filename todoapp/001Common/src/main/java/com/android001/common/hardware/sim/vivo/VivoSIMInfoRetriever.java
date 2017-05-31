@@ -7,7 +7,7 @@ import com.android001.common.hardware.sim.vivo.utils.VivoSimCardUtils;
 import com.android001.common.hardware.sim.vivo.utils.VivoTelephonyUtils;
 
 /**
- * Created by xixionghui on 2017/5/16.
+ * Created by android001 on 2017/5/16.
  */
 
 public class VivoSIMInfoRetriever extends BaseDeviceIDRetriever {

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by xixionghui on 2017/5/23.
+ * Created by android001 on 2017/5/23.
  */
 
 public class GioneeDeviceIDRetriever extends BaseDeviceIDRetriever

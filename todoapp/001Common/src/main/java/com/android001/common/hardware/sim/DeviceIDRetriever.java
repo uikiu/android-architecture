@@ -1,7 +1,7 @@
 package com.android001.common.hardware.sim;
 
 /**
- * Created by xixionghui on 2017/5/12.
+ * Created by android001 on 2017/5/12.
  * DeviceId检索器
  */
 

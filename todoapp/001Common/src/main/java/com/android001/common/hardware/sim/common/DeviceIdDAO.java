@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.regex.Pattern;
 
 /**
- * Created by xixionghui on 2017/5/11.
+ * Created by android001 on 2017/5/11.
  */
 
 public class DeviceIdDAO {

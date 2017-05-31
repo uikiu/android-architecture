@@ -13,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * Created by xixionghui on 2017/5/18.
+ * Created by android001 on 2017/5/18.
  */
 
 public class OppoDeviceIDRetriever extends BaseDeviceIDRetriever {
