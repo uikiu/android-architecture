@@ -1,5 +1,6 @@
 package com.android001.common.hardware.sim;
 
+import android.os.Build;
 import android.util.Log;
 
 import com.android001.common.hardware.sim.common.CommonDeviceIDRetriever;
@@ -38,6 +39,7 @@ public class DeviceIdSelector {
         //2. 分品牌方法
         OSUtils.ROM_TYPE romType = OSUtils.getROMName();
         BaseDeviceIDRetriever deviceIDRetriever = null;
+        Log.e(TAG,"手机品牌："+ Build.BRAND+"\n手机OS："+romType.name());
         switch (romType) {
             case UNKNOW://-----未知系统：启用默认
                 Log.e(TAG,"未知的系统");
