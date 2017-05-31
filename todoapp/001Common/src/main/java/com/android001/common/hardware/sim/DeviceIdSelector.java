@@ -37,7 +37,7 @@ public class DeviceIdSelector {
         commonDeviceIDRetriever.addDeviceId();
         //2. 分品牌方法
         OSUtils.ROM_TYPE romType = OSUtils.getROMName();
-        BaseDeviceIDRetriever deviceIDRetriever;
+        BaseDeviceIDRetriever deviceIDRetriever = null;
         switch (romType) {
             case UNKNOW://-----未知系统：启用默认
                 Log.e(TAG,"未知的系统");
@@ -45,31 +45,24 @@ public class DeviceIdSelector {
                 break;
             case FLYME://魅族
                 deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(MeiZuDeviceIdRetriever.class);
-                if (null!=deviceIDRetriever) deviceIDRetriever.addDeviceId();
                 break;
             case EMUI://华为
                 deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(HWDeviceIDRetriever.class);
-                if (null!=deviceIDRetriever) deviceIDRetriever.addDeviceId();
                 break;
             case COLOR_OS://oppo
-                OppoDeviceIDRetriever oppoDeviceIDRetriever = new OppoDeviceIDRetriever();
-                oppoDeviceIDRetriever.addDeviceId();
+                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(OppoDeviceIDRetriever.class);
                 break;
             case FUNTOUCH_UI://VIVO
-                VivoSIMInfoRetriever vivoSIMInfoRetriever = new VivoSIMInfoRetriever();
-                vivoSIMInfoRetriever.addDeviceId();
-
+                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(VivoSIMInfoRetriever.class);
                 break;
             case EUI://乐视
-                LeEcoDeviceIdRetriever leEcoDeviceIdRetriever = new LeEcoDeviceIdRetriever();
-                leEcoDeviceIdRetriever.addDeviceId();
+                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(LeEcoDeviceIdRetriever.class);
                 break;
             case COOLUI://酷派
 
                 break;
             case AMIGO://金立
-                GioneeDeviceIDRetriever gioneeDeviceIDRetriever = new GioneeDeviceIDRetriever();
-                gioneeDeviceIDRetriever.addDeviceId();
+                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(GioneeDeviceIDRetriever.class);
                 break;
             case TOUCH_WIZ://三星
                 break;
@@ -77,5 +70,7 @@ public class DeviceIdSelector {
                 Log.e(TAG,"未知的系统，执行所有品牌获取deviceId的方法");
                 break;
         }
+
+        if (null!=deviceIDRetriever) deviceIDRetriever.addDeviceId();
     }
 }
