@@ -16,5 +16,9 @@
 #   public *;
 #}
 
+-keep class com.dlht.common.** {*;}
+-dontwarn com.dlht.common.**
+
+
 -keep class com.android001.common.**{*;}
 -keep class com.orhanobut.logger.**{*;}

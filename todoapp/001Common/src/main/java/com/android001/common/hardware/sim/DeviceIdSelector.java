@@ -33,46 +33,54 @@ public class DeviceIdSelector {
     }
 
     public void addDeviceID() {
-        //1. 通用方法
-        CommonDeviceIDRetriever commonDeviceIDRetriever = CommonDeviceIDRetriever.getInstance();
-        commonDeviceIDRetriever.addDeviceId();
-        //2. 分品牌方法
-        OSUtils.ROM_TYPE romType = OSUtils.getROMName();
-        BaseDeviceIDRetriever deviceIDRetriever = null;
-        Log.e(TAG,"手机品牌："+ Build.BRAND+"\n手机OS："+romType.name());
-        switch (romType) {
-            case UNKNOW://-----未知系统：启用默认
-                Log.e(TAG,"未知的系统");
-            case MIUI://小米
-                break;
-            case FLYME://魅族
-                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(MeiZuDeviceIdRetriever.class);
-                break;
-            case EMUI://华为
-                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(HWDeviceIDRetriever.class);
-                break;
-            case COLOR_OS://oppo
-                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(OppoDeviceIDRetriever.class);
-                break;
-            case FUNTOUCH_UI://VIVO
-                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(VivoSIMInfoRetriever.class);
-                break;
-            case EUI://乐视
-                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(LeEcoDeviceIdRetriever.class);
-                break;
-            case COOLUI://酷派
+        try {
+            synchronized (DeviceIdSelector.class) {
+                //1. 通用方法
+                CommonDeviceIDRetriever commonDeviceIDRetriever = CommonDeviceIDRetriever.getInstance();
+                commonDeviceIDRetriever.addDeviceId();
+                //2. 分品牌方法
+                OSUtils.ROM_TYPE romType = OSUtils.getROMName();
+                BaseDeviceIDRetriever deviceIDRetriever = null;
+                //        Log.e(TAG,"手机品牌："+ Build.BRAND+"\n手机OS："+romType.name());
+                switch (romType) {
+                    case UNKNOW://-----未知系统：启用默认
+                        Log.e(TAG, "未知的系统");
+                    case MIUI://小米
+                        break;
+                    case FLYME://魅族
+                        deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(MeiZuDeviceIdRetriever.class);
+                        break;
+                    case EMUI://华为
+                        deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(HWDeviceIDRetriever.class);
+                        break;
+                    case COLOR_OS://oppo
+                        deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(OppoDeviceIDRetriever.class);
+                        break;
+                    case FUNTOUCH_UI://VIVO
+                        deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(VivoSIMInfoRetriever.class);
+                        break;
+                    case EUI://乐视
+                        deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(LeEcoDeviceIdRetriever.class);
+                        break;
+                    case COOLUI://酷派
 
-                break;
-            case AMIGO://金立
-                deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(GioneeDeviceIDRetriever.class);
-                break;
-            case TOUCH_WIZ://三星
-                break;
-            default://-----默认：执行所有
-                Log.e(TAG,"未知的系统，执行所有品牌获取deviceId的方法");
-                break;
+                        break;
+                    case AMIGO://金立
+                        deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(GioneeDeviceIDRetriever.class);
+                        break;
+                    case TOUCH_WIZ://三星
+                        break;
+                    default://-----默认：执行所有
+                        Log.e(TAG, "未知的系统，执行所有品牌获取deviceId的方法");
+                        break;
+                }
+
+                if (null != deviceIDRetriever) deviceIDRetriever.addDeviceId();
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
         }
 
-        if (null!=deviceIDRetriever) deviceIDRetriever.addDeviceId();
+
     }
 }

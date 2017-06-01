@@ -13,8 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.android001.common.hardware.sim.DeviceIdSelector;
-import com.android001.common.hardware.sim.common.DeviceIdDAO;
+import com.dlht.common.sim.DeviceIdSelector;
+import com.dlht.common.sim.common.DeviceIdDAO;
 import com.orhanobut.logger.Logger;
 
 
@@ -44,7 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        DeviceIdSelector.getInstance().addDeviceID();
+//        DeviceIdSelector.getInstance().addDeviceID();
+//        for(int i = 0 ;i <100; i ++) {
+//        }
+        DeviceIdSelector.addDeviceID();
         switch (v.getId()) {
             case R.id.print:
                 Logger.e(DeviceIdDAO.getInstance().getImEiAnyWay());

@@ -19,6 +19,12 @@ android {
         abortOnError false
     }
 
+    repositories {
+        flatDir {
+            dirs 'libs' //this way we can find the .aar file in libs folder
+        }
+    }
+
 
     signingConfigs {
         release {//声明签名
@@ -83,7 +89,7 @@ android {
      */
     applicationVariants.all { variant->
         variant.outputs.each { output->
-            if (output.outputFile!=null&&output.outputFile.name.endsWith('apk')) {
+            if (output.outputFile!=null&&output.outputFile.name.endsWith('.apk')) {
                 if ('release'.equals(variant.buildType.name) ){
                     def apkFile = new File(output.outputFile.getParent(),
                     "example_${variant.flavorName}_${variant.buildType.name}_ver${variant.versionName}_pt${new Date().format("yyyyMMddHHmm",TimeZone.getTimeZone("UTC"))}.apk")
@@ -105,9 +111,11 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
-    compile project(':001Common')
+    //    compile project(':001Common')
     compile 'com.orhanobut:logger:1.15'
     compile 'com.android.support:design:25.1.0'
-//    compile project(':001storage')
-//    compile project(':telephony_tools_r22')
+    //    compile project(':001storage')
+    //    compile project(':telephony_tools_r22')
+    compile files('libs/dlht_common_release_ver1.0.0.jar')
+//        compile(name: 'dlht_common_release_ver1.0.0', ext: 'aar');
 }
