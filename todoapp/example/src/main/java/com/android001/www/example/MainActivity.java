@@ -13,8 +13,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.dlht.common.sim.DeviceIdSelector;
-import com.dlht.common.sim.common.DeviceIdDAO;
+
+import com.android001.common.hardware.sim.DeviceIdSelector;
+import com.android001.common.hardware.sim.common.DeviceIdDAO;
 import com.orhanobut.logger.Logger;
 
 
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         registerBroadcastReceiver();
     }
-
 
     @Override
     public void onClick(View v) {

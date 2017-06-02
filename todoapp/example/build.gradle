@@ -111,11 +111,11 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
-    //    compile project(':001Common')
+    compile project(':001Common')
     compile 'com.orhanobut:logger:1.15'
     compile 'com.android.support:design:25.1.0'
     //    compile project(':001storage')
     //    compile project(':telephony_tools_r22')
-    compile files('libs/dlht_common_release_ver1.0.0.jar')
+//    compile files('libs/dlht_common_release_ver1.0.0.jar')
 //        compile(name: 'dlht_common_release_ver1.0.0', ext: 'aar');
 }

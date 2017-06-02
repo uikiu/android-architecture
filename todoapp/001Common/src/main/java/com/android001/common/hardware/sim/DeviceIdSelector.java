@@ -5,11 +5,13 @@ import android.util.Log;
 
 import com.android001.common.hardware.sim.common.CommonDeviceIDRetriever;
 import com.android001.common.hardware.sim.gione.GioneeDeviceIDRetriever;
+import com.android001.common.hardware.sim.hisense.HisenseDeviceIdRetriever;
 import com.android001.common.hardware.sim.huawei.HWDeviceIDRetriever;
 import com.android001.common.hardware.sim.leEco.LeEcoDeviceIdRetriever;
 import com.android001.common.hardware.sim.meizu.MeiZuDeviceIdRetriever;
 import com.android001.common.hardware.sim.oppo.OppoDeviceIDRetriever;
 import com.android001.common.hardware.sim.vivo.VivoSIMInfoRetriever;
+import com.android001.common.hardware.sim.xiaomi.XiaomiDeviceIDRetriever;
 import com.android001.common.os.others.OSUtils;
 import com.orhanobut.logger.Logger;
 
@@ -21,18 +23,18 @@ import com.orhanobut.logger.Logger;
 public class DeviceIdSelector {
     private static final String TAG = "DeviceIdSelector";
 
-    private DeviceIdSelector() {
-    }
+//    private DeviceIdSelector() {
+//    }
+//
+//    private static class DeviceIdSelectorHolder {
+//        private static final DeviceIdSelector INSTANCE = new DeviceIdSelector();
+//    }
+//
+//    public static DeviceIdSelector getInstance() {
+//        return DeviceIdSelectorHolder.INSTANCE;
+//    }
 
-    private static class DeviceIdSelectorHolder {
-        private static final DeviceIdSelector INSTANCE = new DeviceIdSelector();
-    }
-
-    public static DeviceIdSelector getInstance() {
-        return DeviceIdSelectorHolder.INSTANCE;
-    }
-
-    public void addDeviceID() {
+    public static void addDeviceID() {
         try {
             synchronized (DeviceIdSelector.class) {
                 //1. 通用方法
@@ -41,11 +43,12 @@ public class DeviceIdSelector {
                 //2. 分品牌方法
                 OSUtils.ROM_TYPE romType = OSUtils.getROMName();
                 BaseDeviceIDRetriever deviceIDRetriever = null;
-                //        Log.e(TAG,"手机品牌："+ Build.BRAND+"\n手机OS："+romType.name());
+                        Log.e(TAG,"手机品牌："+ Build.BRAND+"\n手机OS："+romType.name());
                 switch (romType) {
                     case UNKNOW://-----未知系统：启用默认
                         Log.e(TAG, "未知的系统");
                     case MIUI://小米
+                        deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(XiaomiDeviceIDRetriever.class);
                         break;
                     case FLYME://魅族
                         deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(MeiZuDeviceIdRetriever.class);
@@ -69,6 +72,9 @@ public class DeviceIdSelector {
                         deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(GioneeDeviceIDRetriever.class);
                         break;
                     case TOUCH_WIZ://三星
+                        break;
+                    case VISION://海信
+                        deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(HisenseDeviceIdRetriever.class);
                         break;
                     default://-----默认：执行所有
                         Log.e(TAG, "未知的系统，执行所有品牌获取deviceId的方法");

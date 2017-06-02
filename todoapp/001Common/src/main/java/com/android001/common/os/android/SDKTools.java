@@ -48,6 +48,17 @@ public class SDKTools {
         return compareTo(offeredSdkVersion) < 0;
     }
 
+
+    /**
+     * 当前系统sdk版本小于等于指定的sdk版本号情况
+     *
+     * @param offeredSdkVersion
+     * @return
+     */
+    public boolean equalOrLesser(int offeredSdkVersion) {
+        return compareTo(offeredSdkVersion) <= 0;
+    }
+
     /**
      * 当前系统sdk版本大于指定的sdk版本号情况，不包含指定的版本号
      *
@@ -56,6 +67,15 @@ public class SDKTools {
      */
     public boolean after(int offeredSdkVersion) {
         return compareTo(offeredSdkVersion) > 0;
+    }
+
+    /**
+     * 当前系统sdk版本大于等于指定的sdk版本号情况
+     * @param offeredSdkVersion
+     * @return
+     */
+    public boolean equalOrGrater(int offeredSdkVersion) {
+        return compareTo(offeredSdkVersion) >= 0;
     }
 
 

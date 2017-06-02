@@ -17,7 +17,8 @@ public class OSUtils {
         EUI("eui", 5),//乐视
         COOLUI("coolUI", 6),//酷派
         AMIGO("amigo", 7),//金立
-        TOUCH_WIZ("TouchWiz", 8);//三星
+        TOUCH_WIZ("TouchWiz", 8),//三星
+        VISION("VISION", 9);//海信
 
 
         String uiName;
@@ -54,6 +55,8 @@ public class OSUtils {
     private static final String COOLUI_KEY_2 = "ro.yulong.version.release";
     //三星
     private static final String SAMSUNG_VALUE= "samsung";
+    //海信
+    private static final String VISION_KEY_1 = "Hisense";
 
 
     public static ROM_TYPE getROMName(){
@@ -79,6 +82,8 @@ public class OSUtils {
             rom_type = ROM_TYPE.COOLUI;
         }else if (romBuildProperties.containsValue(SAMSUNG_VALUE)) {//三星
             rom_type = ROM_TYPE.TOUCH_WIZ;
+        }else if (romBuildProperties.containsValue(VISION_KEY_1)) {//海信
+            rom_type = ROM_TYPE.VISION;
         }
 
         return rom_type;

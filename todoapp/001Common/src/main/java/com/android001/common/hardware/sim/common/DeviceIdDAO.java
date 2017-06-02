@@ -1,6 +1,7 @@
 package com.android001.common.hardware.sim.common;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -64,6 +65,18 @@ public class DeviceIdDAO {
             deviceId.toUpperCase(Locale.getDefault());
             IM_EI_SET.add(deviceId);
         }
+    }
+    public void addDeviceIDs(List<String> deviceIds){
+        try {
+            if (null==deviceIds||deviceIds.isEmpty()) return;
+            final  int deviceIdCounter = deviceIds.size();
+            for (int i = 0; i < deviceIdCounter; i++) {
+                addDeviceId(deviceIds.get(i));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private String translateSetToString(HashSet<String> set) {
