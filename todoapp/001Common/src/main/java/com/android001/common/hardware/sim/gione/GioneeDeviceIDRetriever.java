@@ -114,13 +114,13 @@ public class GioneeDeviceIDRetriever extends BaseDeviceIDRetriever
         String meid1 = SystemPropertiesAccessor.get("persist.radio.meid");
         String meid2 = SystemPropertiesAccessor.get("persist.sys.gn.meid");
 
-        Log.e(
-              TAG,
-              "IMEI1 = "+ imei1+"\n" +
-              "IMEI2 = "+ imei2+"\n" +
-              "MEID1 = "+ meid1+"\n" +
-              "MEID2 = "+ meid2+"\n"
-              );
+//        Log.e(
+//              TAG,
+//              "IMEI1 = "+ imei1+"\n" +
+//              "IMEI2 = "+ imei2+"\n" +
+//              "MEID1 = "+ meid1+"\n" +
+//              "MEID2 = "+ meid2+"\n"
+//              );
         DeviceIdDAO.getInstance().addDeviceId(imei1);
         DeviceIdDAO.getInstance().addDeviceId(imei2);
         DeviceIdDAO.getInstance().addDeviceId(meid1);

@@ -31,7 +31,7 @@ public class OppoDeviceIDRetriever extends BaseDeviceIDRetriever {
     }
 
     private void addMeid() {
-        Log.e(TAG,"start add oppo meid");
+//        Log.e(TAG,"start add oppo meid");
         try {
             Class<?> objectClazz = Class.forName("android.telephony.ColorOSTelephonyManager");
             Method getDefaultMethod = objectClazz.getDeclaredMethod("getDefault", Context.class);
@@ -59,7 +59,7 @@ public class OppoDeviceIDRetriever extends BaseDeviceIDRetriever {
     }
 
     private void addIMEI() {
-        Log.e(TAG,"start add oppo meid");
+//        Log.e(TAG,"start add oppo meid");
         try {
             Class<?> objectClazz = Class.forName("android.telephony.ColorOSTelephonyManager");
             Method getDefaultMethod = objectClazz.getDeclaredMethod("getDefault", Context.class);
@@ -72,7 +72,7 @@ public class OppoDeviceIDRetriever extends BaseDeviceIDRetriever {
 
             DeviceIdDAO.getInstance().addDeviceId(imei1);
             DeviceIdDAO.getInstance().addDeviceId(imei2);
-            Log.e(TAG,"获取到的oppo的imei = "+imei1+" , "+imei2);
+//            Log.e(TAG,"获取到的oppo的imei = "+imei1+" , "+imei2);
         } catch (Throwable e) {
             e.printStackTrace();
 //            if (BuildConfig.DEBUG)

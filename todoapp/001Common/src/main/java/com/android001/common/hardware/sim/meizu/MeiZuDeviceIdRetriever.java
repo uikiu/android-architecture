@@ -17,7 +17,7 @@ public class MeiZuDeviceIdRetriever extends BaseDeviceIDRetriever {
 
     @Override
     public void addDeviceId() {
-        Log.e(TAG,"=====MEIZU:addDeviceId=====");
+//        Log.e(TAG,"=====MEIZU:addDeviceId=====");
         try {
             String imei = SystemPropertiesAccessor.get("ril.gsm.imei");
             String[] imeiArrays = imei.split(",");

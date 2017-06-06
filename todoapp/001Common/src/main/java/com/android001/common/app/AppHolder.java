@@ -3,8 +3,10 @@ package com.android001.common.app;
 import android.content.Context;
 
 /**
- * Created by oeager on 16-5-24.
- */
+* class design：
+* @author android001
+* created at 2017/6/6 上午9:25
+*/
 public final class AppHolder {
 
     private Context mContext;
