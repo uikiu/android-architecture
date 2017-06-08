@@ -1,5 +1,7 @@
 package com.android001.common.app.call;
 
+import android.content.ComponentName;
+
 /**
  * Created by Bison.Wensent on 16/7/18.
  */
@@ -85,5 +87,36 @@ public class ActiveApp {
                 ", id='" + id + '\'' +
                 ", enable=" + enable +
                 '}';
+    }
+
+    //将此方法枚举化
+    public static ActiveApp QQRsevenApp() {
+        ActiveApp activeApp = new ActiveApp();
+        activeApp.setEnable(true);
+        activeApp.setPackageName("com.tencent.qqpim");
+        activeApp.setActivityName("com.tencent.qqpim.ui.QQPimAndroid");
+        return activeApp;
+    }
+
+    public enum CommonActiveApp {
+        //实例对象
+        QQRsevenApp("com.tencent.qqpim","com.tencent.qqpim.ui.QQPimAndroid",true);
+//        ActiveAppExample("com.android001.example","com.android001.example.MainActivity",false);
+
+        //实例构造
+        private ActiveApp mActiveApp = new ActiveApp();
+
+        private CommonActiveApp(String packageName, String activityName,boolean enable) {
+            mActiveApp.setPackageName(packageName);
+            mActiveApp.setActivityName(activityName);
+            mActiveApp.setEnable(enable);
+        }
+        public ActiveApp getActiveApp() {
+            return mActiveApp;
+        }
+
+
+
+
     }
 }

@@ -1,16 +1,20 @@
 package com.android001.common.app.call.example;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.widget.Toast;
 
 import com.android001.common.app.AppHolder;
 import com.android001.common.app.call.ActiveApp;
 import com.android001.common.app.call.BaseCaller;
+import com.android001.common.app.call.Caller;
 import com.android001.common.app.utils.AppTool;
 import com.android001.common.resource.sp.AppSharePreferenceMgr;
 import com.android001.common.resource.sp.SharedPreferencesKey;
 import com.android001.common.state.AppNetworkMgr;
+import com.android001.ui.dialog.CommonAlertDialog;
 
 /**
  * class design：
@@ -48,6 +52,7 @@ public class QQRsevenCaller extends BaseCaller {
         context.startActivity(intent);
         firstStartFinished();
     }
+
 
     private void firstStartFinished() {
         AppSharePreferenceMgr.put

@@ -1,8 +1,8 @@
 package com.android001.www.example;
 
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 import com.android001.common.app.call.ActiveApp;
@@ -20,8 +21,7 @@ import com.android001.common.app.call.Caller;
 import com.android001.common.app.call.example.QQRsevenCaller;
 import com.android001.common.hardware.sim.DeviceIdSelector;
 import com.android001.common.hardware.sim.common.DeviceIdDAO;
-import com.android001.common.resource.sp.AppSharePreferenceMgr;
-import com.android001.common.resource.sp.SharedPreferencesKey;
+import com.android001.ui.dialog.CommonAlertDialog;
 import com.orhanobut.logger.Logger;
 
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         DeviceIdSelector.addDeviceID();
         switch (v.getId()) {
             case R.id.print:
-                Log.e(TAG,"打印按钮被点击");
+                Log.e(TAG, "打印按钮被点击");
 //                Logger.e(DeviceIdDAO.getInstance().getImEiAnyWay());
 //                String launcherPackageName = getLauncherPackageName(this);
 //                Log.e(TAG,"获取到当前正在运行的包名 = "+launcherPackageName);
@@ -69,23 +69,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void skip2OtherApp(){
-        Log.e(TAG,"skip2OtherApp");
-        ActiveApp activeApp = new ActiveApp();
-        activeApp.setEnable(true);
-        activeApp.setPackageName("com.tencent.qqpim");
-        activeApp.setActivityName("com.tencent.qqpim.ui.QQPimAndroid");
-        Caller caller = new QQRsevenCaller(activeApp);
-        if (caller.fitCall())
-        {
-            caller.call(this);
+    private void skip2OtherApp() {
+        Log.e(TAG, "skip2OtherApp");
+        final Caller caller = new QQRsevenCaller(ActiveApp.CommonActiveApp.QQRsevenApp.getActiveApp());
+        if (caller.fitCall()) {
+            android.app.AlertDialog alertDialog = CommonAlertDialog.getCommonAlertDialog(
+                    MainActivity.this,
+                    CommonAlertDialog.QQRsevenTitle,
+                    CommonAlertDialog.QQRsevenMSG,
+                    new CommonAlertDialog.PositiveListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            caller.call(MainActivity.this);
+                        }
+                    }
+            );
+            alertDialog.show();
         }
 
-
-//        Intent intent = new Intent(Intent.ACTION_VIEW);
-//        ComponentName componentName = new ComponentName("com.tencent.qqpim","com.tencent.qqpim.ui.QQPimAndroid");
-//        intent.setComponent(componentName);
-//        startActivity(intent);
     }
 
     @Override
@@ -114,62 +115,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void showDialog(String tile,String msg) {
+    private void showDialog(String tile, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(tile);
         builder.setMessage(msg);
         builder.create().show();
     }
 
-    private void registerBroadcastReceiver()
-    {
+    private void registerBroadcastReceiver() {
         IntentFilter meidIntentFilter = new IntentFilter();
         meidIntentFilter.addAction("intent_action_imei_meid");
         registerReceiver(mDevInfoReceiver, meidIntentFilter);
     }
 
-    private void unregisterBroadcastReceiver()
-    {
+    private void unregisterBroadcastReceiver() {
         if (mDevInfoReceiver != null) {
             unregisterReceiver(mDevInfoReceiver);
         }
     }
 
-    private class DevInfoReceiver extends BroadcastReceiver
-    {
+    private class DevInfoReceiver extends BroadcastReceiver {
         private static final String TAG = "DevInfoReceiver";
 
-        private DevInfoReceiver() {}
+        private DevInfoReceiver() {
+        }
 
-        public void onReceive(Context paramContext, Intent paramIntent)
-        {
-            if (!paramIntent.getAction().equals("intent_action_imei_meid"))
-            {
+        public void onReceive(Context paramContext, Intent paramIntent) {
+            if (!paramIntent.getAction().equals("intent_action_imei_meid")) {
                 return;
             }
             SharedPreferences sp = paramContext.getSharedPreferences("pref_devinfo", 3);
             String str = paramIntent.getStringExtra("extra_key_meid");
-            if (str != null)
-            {
+            if (str != null) {
                 sp.edit().putString("extra_key_meid", str).commit();
             }
 //            paramIntent = paramIntent.getExtras();
             Bundle extrasBundle = paramIntent.getExtras();
-            if (extrasBundle == null)
-            {
+            if (extrasBundle == null) {
                 return;
             }
             String[] imeis = extrasBundle.getStringArray("extra_key_imei");
-            if (imeis == null)
-            {
+            if (imeis == null) {
                 return;
             }
             int i = 0;
-            while (i < imeis.length)
-            {
-                if (imeis[i] != null)
-                {
-                    Log.e(TAG,"deviceId = "+imeis[i]);
+            while (i < imeis.length) {
+                if (imeis[i] != null) {
+                    Log.e(TAG, "deviceId = " + imeis[i]);
                     sp.edit().putString("extra_key_imei" + (i + 1), imeis[i]).commit();
                 }
                 i += 1;
