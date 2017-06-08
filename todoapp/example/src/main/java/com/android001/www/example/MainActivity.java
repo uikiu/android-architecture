@@ -1,6 +1,7 @@
 package com.android001.www.example;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -14,8 +15,13 @@ import android.view.View;
 import android.widget.Button;
 
 
+import com.android001.common.app.call.ActiveApp;
+import com.android001.common.app.call.Caller;
+import com.android001.common.app.call.example.QQRsevenCaller;
 import com.android001.common.hardware.sim.DeviceIdSelector;
 import com.android001.common.hardware.sim.common.DeviceIdDAO;
+import com.android001.common.resource.sp.AppSharePreferenceMgr;
+import com.android001.common.resource.sp.SharedPreferencesKey;
 import com.orhanobut.logger.Logger;
 
 
@@ -28,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         Logger.e("启动完成");
+        setContentView(R.layout.activity_main);
         mPrint = (Button) findViewById(R.id.print);
         mPrint.setOnClickListener(this);
         mDrawerNavigation = (Button) findViewById(R.id.drawerNavigation);
@@ -42,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         registerBroadcastReceiver();
     }
 
+
     @Override
     public void onClick(View v) {
 //        DeviceIdSelector.getInstance().addDeviceID();
@@ -50,14 +57,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         DeviceIdSelector.addDeviceID();
         switch (v.getId()) {
             case R.id.print:
-                Logger.e(DeviceIdDAO.getInstance().getImEiAnyWay());
-                String launcherPackageName = getLauncherPackageName(this);
-                Log.e(TAG,"获取到当前正在运行的包名 = "+launcherPackageName);
+                Log.e(TAG,"打印按钮被点击");
+//                Logger.e(DeviceIdDAO.getInstance().getImEiAnyWay());
+//                String launcherPackageName = getLauncherPackageName(this);
+//                Log.e(TAG,"获取到当前正在运行的包名 = "+launcherPackageName);
+                skip2OtherApp();
                 break;
             case R.id.drawerNavigation:
                 showDialog("IMEI&&MEID", DeviceIdDAO.getInstance().getImEiAnyWay());
                 break;
         }
+    }
+
+    private void skip2OtherApp(){
+        Log.e(TAG,"skip2OtherApp");
+        ActiveApp activeApp = new ActiveApp();
+        activeApp.setEnable(true);
+        activeApp.setPackageName("com.tencent.qqpim");
+        activeApp.setActivityName("com.tencent.qqpim.ui.QQPimAndroid");
+        Caller caller = new QQRsevenCaller(activeApp);
+        if (caller.fitCall())
+        {
+            caller.call(this);
+        }
+
+
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        ComponentName componentName = new ComponentName("com.tencent.qqpim","com.tencent.qqpim.ui.QQPimAndroid");
+//        intent.setComponent(componentName);
+//        startActivity(intent);
     }
 
     @Override

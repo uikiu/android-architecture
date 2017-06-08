@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<actives>
+
+    <app id = "QqRseven">
+        <name>QQ同步助手</name>
+        <priority>1</priority>
+        <pag>com.tencent.qqpim</pag>
+        <activity>com.tencent.qqpim.ui.MainUI3</activity>
+    </app>
+
+</actives>
