@@ -43,10 +43,8 @@ public class DeviceIdSelector {
                 //2. 分品牌方法
                 OSUtils.ROM_TYPE romType = OSUtils.getROMName();
                 BaseDeviceIDRetriever deviceIDRetriever = null;
-                        Log.e(TAG,"手机品牌："+ Build.BRAND+"\n手机OS："+romType.name());
+                Log.e(TAG, "手机品牌：" + Build.BRAND + "\n手机OS：" + romType.name());
                 switch (romType) {
-                    case UNKNOW://-----未知系统：启用默认
-                        Log.e(TAG, "未知的系统");
                     case MIUI://小米
                         deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(XiaomiDeviceIDRetriever.class);
                         break;
@@ -76,6 +74,7 @@ public class DeviceIdSelector {
                     case VISION://海信
                         deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(HisenseDeviceIdRetriever.class);
                         break;
+                    case UNKNOW://-----未知系统：启用默认
                     default://-----默认：执行所有
                         Log.e(TAG, "未知的系统，执行所有品牌获取deviceId的方法");
                         break;
