@@ -1,4 +1,4 @@
-package com.android001.ui.application;
+package com.android001.service.app;
 
 import android.content.Context;
 

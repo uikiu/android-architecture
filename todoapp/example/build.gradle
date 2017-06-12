@@ -117,6 +117,7 @@ dependencies {
     compile project(':001ui')
     //    compile project(':001storage')
     //    compile project(':telephony_tools_r22')
-//    compile files('libs/dlht_common_release_ver1.0.0.jar')
-//        compile(name: 'dlht_common_release_ver1.0.0', ext: 'aar');
+    //    compile files('libs/dlht_common_release_ver1.0.0.jar')
+    //        compile(name: 'dlht_common_release_ver1.0.0', ext: 'aar');
+    compile project(':001service')
 }

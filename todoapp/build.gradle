@@ -41,6 +41,6 @@ ext {
 
     //kotlin
     kotlin_version = '1.0.4'
-//    anko_version =
+    anko_version = '0.10.1'
 
 }

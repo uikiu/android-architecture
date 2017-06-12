@@ -15,7 +15,8 @@ public class ExampleApplication extends Application {
         Logger.init("android001");
         com.android001.www.example.AppHolder.getImp().initAppContext(this);
         com.android001.common.app.AppHolder.getImp().initAppContext(this);
-        com.android001.ui.application.AppHolder.getInstance().initAppContext(this);
+        com.android001.ui.app.AppHolder.getInstance().initAppContext(this);
+        com.android001.service.app.AppHolder.getInstance().initAppContext(this);
 //        com.dlht.common.app.AppHolder.getImp().initAppContext(this);
 //        com.android001.storage.AppHolder.getImp().initAppContext(this);
 

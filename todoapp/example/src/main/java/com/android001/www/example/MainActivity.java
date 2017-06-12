@@ -1,6 +1,9 @@
 package com.android001.www.example;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,15 +16,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 import com.android001.common.app.call.ActiveApp;
 import com.android001.common.app.call.Caller;
-import com.android001.common.app.call.example.QQRsevenCaller;
-import com.android001.common.hardware.sim.DeviceIdSelector;
 import com.android001.common.hardware.sim.common.DeviceIdDAO;
+import com.android001.service.alarmService.AlarmSetter;
+import com.android001.service.alarmService.PendingAlarm;
 import com.android001.ui.dialog.CommonAlertDialog;
+
+import com.android001.common.app.call.example.QQRsevenCaller;
 import com.orhanobut.logger.Logger;
 
 
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        DeviceIdSelector.getInstance().addDeviceID();
 //        for(int i = 0 ;i <100; i ++) {
 //        }
-        DeviceIdSelector.addDeviceID();
+//        DeviceIdSelector.addDeviceID();
         switch (v.getId()) {
             case R.id.print:
                 Log.e(TAG, "打印按钮被点击");
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                String launcherPackageName = getLauncherPackageName(this);
 //                Log.e(TAG,"获取到当前正在运行的包名 = "+launcherPackageName);
                 skip2OtherApp();
+//                setAutoSkip2OtherApp();
                 break;
             case R.id.drawerNavigation:
                 showDialog("IMEI&&MEID", DeviceIdDAO.getInstance().getImEiAnyWay());
@@ -88,6 +93,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+    private void setAutoSkip2OtherApp() {
+//        AlarmSetter setter = new AlarmSetter();
+//        setter.setAlarm();
+
+
+
+        AlarmSetter.setAlarm
+                (
+                new PendingAlarm.PendingAlarmBuilder(
+//                        PendingAlarm.getActivityPendingIntent("com.tencent.qqpim","com.tencent.qqpim.ui.QQPimAndroid")
+                        PendingAlarm.getActivityPendingIntent("com.dc.geek","com.stkj.presenter.ui.splash.SplashActivity")
+                ).setTriggerAtMillis(System.currentTimeMillis()+5*1000).build()
+        );
+
+        AlarmSetter.setAlarm
+                (
+                        new PendingAlarm.PendingAlarmBuilder(
+                                PendingAlarm.getActivityPendingIntent("com.baidu.searchbox","com.baidu.searchbox.SplashActivity")
+                        ).setTriggerAtMillis(System.currentTimeMillis()+15*1000).build()
+                );
+    }
+
+
 
     @Override
     protected void onDestroy() {
