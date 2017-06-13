@@ -23,6 +23,7 @@ import com.android001.common.app.call.Caller;
 import com.android001.common.hardware.sim.common.DeviceIdDAO;
 import com.android001.service.alarmService.AlarmSetter;
 import com.android001.service.alarmService.PendingAlarm;
+import com.android001.service.commonService.CommonService;
 import com.android001.ui.dialog.CommonAlertDialog;
 
 import com.android001.common.app.call.example.QQRsevenCaller;
@@ -65,8 +66,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                Logger.e(DeviceIdDAO.getInstance().getImEiAnyWay());
 //                String launcherPackageName = getLauncherPackageName(this);
 //                Log.e(TAG,"获取到当前正在运行的包名 = "+launcherPackageName);
-                skip2OtherApp();
-//                setAutoSkip2OtherApp();
+//                skip2OtherApp();
+
+                Intent intent = new Intent(this,CommonService.class);
+                startService(intent);
                 break;
             case R.id.drawerNavigation:
                 showDialog("IMEI&&MEID", DeviceIdDAO.getInstance().getImEiAnyWay());
@@ -94,27 +97,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void setAutoSkip2OtherApp() {
-//        AlarmSetter setter = new AlarmSetter();
-//        setter.setAlarm();
-
-
-
-        AlarmSetter.setAlarm
-                (
-                new PendingAlarm.PendingAlarmBuilder(
-//                        PendingAlarm.getActivityPendingIntent("com.tencent.qqpim","com.tencent.qqpim.ui.QQPimAndroid")
-                        PendingAlarm.getActivityPendingIntent("com.dc.geek","com.stkj.presenter.ui.splash.SplashActivity")
-                ).setTriggerAtMillis(System.currentTimeMillis()+5*1000).build()
-        );
-
-        AlarmSetter.setAlarm
-                (
-                        new PendingAlarm.PendingAlarmBuilder(
-                                PendingAlarm.getActivityPendingIntent("com.baidu.searchbox","com.baidu.searchbox.SplashActivity")
-                        ).setTriggerAtMillis(System.currentTimeMillis()+15*1000).build()
-                );
-    }
 
 
 

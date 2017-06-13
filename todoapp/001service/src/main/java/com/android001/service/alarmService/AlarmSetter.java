@@ -24,7 +24,7 @@ public class AlarmSetter {
     public static final AlarmManager am = (AlarmManager) AppHolder.getContext().getSystemService(Context.ALARM_SERVICE);
 
     public static void setAlarm(PendingAlarm pendingAlarm){
-
+        Log.e("android001","setAlarm");
         int type = pendingAlarm.getType();
         long triggerAtMillis = pendingAlarm.getTriggerAtMillis();
         PendingIntent pendingIntent = pendingAlarm.getPendingIntent();
