@@ -100,23 +100,19 @@ public class ActiveApp {
 
     public enum CommonActiveApp {
         //实例对象
-        QQRsevenApp("com.tencent.qqpim","com.tencent.qqpim.ui.QQPimAndroid",true);
-//        ActiveAppExample("com.android001.example","com.android001.example.MainActivity",false);
+        QQRsevenApp("com.tencent.qqpim", "com.tencent.qqpim.ui.QQPimAndroid", true);
 
         //实例构造
         private ActiveApp mActiveApp = new ActiveApp();
 
-        private CommonActiveApp(String packageName, String activityName,boolean enable) {
+        private CommonActiveApp(String packageName, String activityName, boolean enable) {
             mActiveApp.setPackageName(packageName);
             mActiveApp.setActivityName(activityName);
             mActiveApp.setEnable(enable);
         }
+
         public ActiveApp getActiveApp() {
             return mActiveApp;
         }
-
-
-
-
     }
 }

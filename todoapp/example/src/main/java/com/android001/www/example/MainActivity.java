@@ -66,13 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                Logger.e(DeviceIdDAO.getInstance().getImEiAnyWay());
 //                String launcherPackageName = getLauncherPackageName(this);
 //                Log.e(TAG,"获取到当前正在运行的包名 = "+launcherPackageName);
-//                skip2OtherApp();
-
-                Intent intent = new Intent(this,CommonService.class);
-                startService(intent);
+                skip2OtherApp();
                 break;
             case R.id.drawerNavigation:
-                showDialog("IMEI&&MEID", DeviceIdDAO.getInstance().getImEiAnyWay());
+//                showDialog("IMEI&&MEID", DeviceIdDAO.getInstance().getImEiAnyWay());
+                Intent intent = new Intent(this,CommonService.class);
+                startService(intent);
                 break;
         }
     }
@@ -94,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             );
             alertDialog.show();
         }
-
     }
 
 

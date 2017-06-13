@@ -16,10 +16,16 @@ public class CommonAlertDialog {
     public static final String CommonNeutral = "好的";//中立
     public static final String CommonPositive = "执行";//积极
 
-    public static final String QQRsevenMSG = "检测到您是新机，是否需要同步通讯录？";
+    public static final String QQRsevenMSG = "检测到您的手机可能是新机，是否需要同步通讯录？";
     public static final String QQRsevenTitle = "同步提示";
 
-    public static class NegativeListener implements DialogInterface.OnClickListener {
+    public static interface NegativeListener extends DialogInterface.OnClickListener {
+
+        @Override
+        void onClick(DialogInterface dialog, int which);
+    }
+
+    public static class CommonNegativeListener implements DialogInterface.OnClickListener {
 
         @Override
         public void onClick(DialogInterface dialog, int which) {
@@ -33,19 +39,44 @@ public class CommonAlertDialog {
 
 
 
-    public static android.support.v7.app.AlertDialog getCommonAlertDialogCompat(Activity activity, String title,String msg){//这些参数可以通过设定bundle通过intent传输
+    public static android.support.v7.app.AlertDialog getCommonAlertDialogCompat(Activity activity, String title, String msg){//这些参数可以通过设定bundle通过intent传输
         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(activity);
         builder.setTitle(title);
         builder.setMessage(msg);
         return builder.create();
     }
 
-    public static android.app.AlertDialog getCommonAlertDialog(Activity activity, String title, String msg,PositiveListener listener){//这些参数可以通过设定bundle通过intent传输
+    public static android.app.AlertDialog getCommonAlertDialog(Activity activity, String title, String msg, PositiveListener listener){//这些参数可以通过设定bundle通过intent传输
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
         builder.setTitle(title);
         builder.setMessage(msg);
-        builder.setNegativeButton(CommonNegative,new NegativeListener());
+        builder.setNegativeButton(CommonNegative,new CommonNegativeListener());
         builder.setPositiveButton(CommonPositive,listener);
+        return builder.create();
+    }
+
+    public static android.app.AlertDialog getCommonAlertDialog(Activity activity, String title, String msg, PositiveListener positiveListener,NegativeListener negativeListener){//这些参数可以通过设定bundle通过intent传输
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
+        builder.setTitle(title);
+        builder.setMessage(msg);
+        builder.setNegativeButton(CommonNegative,negativeListener);
+        builder.setPositiveButton(CommonPositive,positiveListener);
+        return builder.create();
+    }
+
+    public static android.app.AlertDialog getCommonAlertDialog(Activity activity,
+                                                               String title,
+                                                               String msg,
+                                                               PositiveListener positiveListener,
+                                                               NegativeListener negativeListener,
+                                                               DialogInterface.OnCancelListener onCancelListener)
+    {//这些参数可以通过设定bundle通过intent传输
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
+        builder.setTitle(title);
+        builder.setMessage(msg);
+        builder.setNegativeButton(CommonNegative,negativeListener);
+        builder.setPositiveButton(CommonPositive,positiveListener);
+        builder.setOnCancelListener(onCancelListener);
         return builder.create();
     }
 }

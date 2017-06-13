@@ -10,16 +10,10 @@ import android.net.NetworkInfo.State;
 import android.util.Log;
 
 /**
- * 主要功能:App网络管理
- *
- * @Prject: CommonUtilLibrary
- * @Package: com.jingewenku.abrahamcaijin.commonutil
- * @author: AbrahamCaiJin
- * @date: 2017年05月03日 16:52
- * @Copyright: 个人版权所有
- * @Company:
- * @version: 1.0.0
- */
+* class design：
+* @author android001
+* created at 2017/6/13 上午10:20
+*/
 
 public class AppNetworkMgr {
     //未找到合适匹配网络类型

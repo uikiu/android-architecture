@@ -44,7 +44,6 @@ public class QQRsevenCaller extends BaseCaller {
         boolean firstStarted = (boolean) AppSharePreferenceMgr.get(AppHolder.getContext(), SharedPreferencesKey.FIRST_STARTED, false);
         boolean isConnected = AppNetworkMgr.isNetworkConnected(AppHolder.getContext());
         return (!firstStarted)&&isConnected;
-//        return true;
     }
 
     @Override
