@@ -1,2 +1,2 @@
-include ':app', ':001Common', ':example', ':javalib', ':001service', ':001storage', ':001ui', ':001eventline', ':kotlinsample'
+include ':app', ':001Common', ':example', ':javalib', ':001service', ':001storage', ':001ui', ':001eventline', ':kotlinsample', ':001net'
 
