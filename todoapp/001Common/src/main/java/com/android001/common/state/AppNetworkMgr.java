@@ -12,7 +12,7 @@ import android.util.Log;
 /**
 * class design：
 * @author android001
-* created at 2017/6/13 上午10:20
+* created at 2017/6/13 下午3:10
 */
 
 public class AppNetworkMgr {

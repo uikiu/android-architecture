@@ -9,3 +9,6 @@ style是指View或窗口指定外观和格式的属性集合。
 * 字体颜色
 * 字号
 * 背景色
+
+
+[style&dialog](http://www.cnblogs.com/David-Young/p/5061249.html)

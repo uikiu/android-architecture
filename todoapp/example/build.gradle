@@ -120,4 +120,8 @@ dependencies {
     //    compile files('libs/dlht_common_release_ver1.0.0.jar')
     //        compile(name: 'dlht_common_release_ver1.0.0', ext: 'aar');
     compile project(':001service')
+
+    //计数器
+    compile(name: 'app-domestic', ext: 'aar')
+    compile 'com.developer.log:app:1.1.0'
 }

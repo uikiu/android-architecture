@@ -8,6 +8,7 @@ import com.android001.common.hardware.sim.gione.GioneeDeviceIDRetriever;
 import com.android001.common.hardware.sim.hisense.HisenseDeviceIdRetriever;
 import com.android001.common.hardware.sim.huawei.HWDeviceIDRetriever;
 import com.android001.common.hardware.sim.leEco.LeEcoDeviceIdRetriever;
+import com.android001.common.hardware.sim.meitu.MeituDeviceIDRetriever;
 import com.android001.common.hardware.sim.meizu.MeiZuDeviceIdRetriever;
 import com.android001.common.hardware.sim.oppo.OppoDeviceIDRetriever;
 import com.android001.common.hardware.sim.vivo.VivoSIMInfoRetriever;
@@ -73,6 +74,9 @@ public class DeviceIdSelector {
                         break;
                     case VISION://海信
                         deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(HisenseDeviceIdRetriever.class);
+                        break;
+                    case MEIOS:
+                        deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(MeituDeviceIDRetriever.class);
                         break;
                     case UNKNOW://-----未知系统：启用默认
                     default://-----默认：执行所有

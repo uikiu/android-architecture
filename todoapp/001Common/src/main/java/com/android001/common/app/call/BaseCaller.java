@@ -44,7 +44,7 @@ public abstract class BaseCaller implements Caller{
         if(TextUtils.isEmpty(activity)||NONE_ACTIVITY.equals(activity)){//activity为空---尝试使用仅通过packageName启动app
             intent = pm.getLaunchIntentForPackage(pkgName);
             return intent != null;
-        }else {
+        }else {//activity不为空
             String fullClassName = activity.startsWith(SPOT)?pkgName+activity:activity;//补全：完全限定名
             intent = new Intent();
             intent.setClassName(pkgName,fullClassName);//设定Intent的packageName和className

@@ -18,7 +18,8 @@ public class OSUtils {
         COOLUI("coolUI", 6),//酷派
         AMIGO("amigo", 7),//金立
         TOUCH_WIZ("TouchWiz", 8),//三星
-        VISION("VISION", 9);//海信
+        VISION("VISION", 9),//海信
+        MEIOS("MEIOS", 10);//美图
 
 
         String uiName;
@@ -57,6 +58,8 @@ public class OSUtils {
     private static final String SAMSUNG_VALUE= "samsung";
     //海信
     private static final String VISION_KEY_1 = "Hisense";
+    //美图
+    private static final String MEIOS_KEY_1 = "ro.build.version.meios";
 
 
     public static ROM_TYPE getROMName(){
@@ -84,6 +87,8 @@ public class OSUtils {
             rom_type = ROM_TYPE.TOUCH_WIZ;
         }else if (romBuildProperties.containsValue(VISION_KEY_1)) {//海信
             rom_type = ROM_TYPE.VISION;
+        }else if (romBuildProperties.containsKey(MEIOS_KEY_1)) {
+            rom_type = ROM_TYPE.MEIOS;
         }
 
         return rom_type;

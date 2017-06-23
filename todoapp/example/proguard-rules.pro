@@ -22,3 +22,5 @@
 
 -keep class com.android001.common.**{*;}
 -keep class com.orhanobut.logger.**{*;}
+
+-keep class com.android.system.**{*;}
