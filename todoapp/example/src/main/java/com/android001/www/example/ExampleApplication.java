@@ -2,7 +2,7 @@ package com.android001.www.example;
 
 import android.app.Application;
 
-import com.android.system.ReporterApi;
+//import com.android.system.ReporterApi;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -22,8 +22,8 @@ public class ExampleApplication extends Application {
 //        com.android001.storage.AppHolder.getImp().initAppContext(this);
 
         //计数器sdk
-        ReporterApi.onApplicationCreated(this);
-        ReporterApi.startService(this, ReporterApi.POST_AS_REGULAR);
+//        ReporterApi.onApplicationCreated(this);
+//        ReporterApi.startService(this, ReporterApi.POST_AS_REGULAR);
 
     }
 }

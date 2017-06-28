@@ -26,6 +26,7 @@ import com.android001.common.app.call.Caller;
 import com.android001.common.app.call.UriCaller;
 import com.android001.common.hardware.sim.DeviceIdSelector;
 import com.android001.common.hardware.sim.common.DeviceIdDAO;
+import com.android001.ndk.Hello;
 import com.android001.service.alarmService.AlarmSetter;
 import com.android001.service.alarmService.PendingAlarm;
 import com.android001.service.commonService.CommonService;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                startService(intent);
 
 //                showCustomNotification();
+                Log.e(TAG,"java call native  : "+new Hello().helloJni());
                 break;
         }
     }
