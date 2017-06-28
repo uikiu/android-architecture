@@ -1,5 +1,7 @@
 package com.android001.common.os.others;
 
+import static com.android001.common.os.others.OSUtils.ROM_TYPE.ZTE;
+
 /**
  * Created by xixionghui on 2017/1/6.
  */
@@ -19,7 +21,8 @@ public class OSUtils {
         AMIGO("amigo", 7),//金立
         TOUCH_WIZ("TouchWiz", 8),//三星
         VISION("VISION", 9),//海信
-        MEIOS("MEIOS", 10);//美图
+        MEIOS("MEIOS", 10),//美图
+        ZTE("ZTE", 11);//中兴
 
 
         String uiName;
@@ -60,6 +63,8 @@ public class OSUtils {
     private static final String VISION_KEY_1 = "Hisense";
     //美图
     private static final String MEIOS_KEY_1 = "ro.build.version.meios";
+    //中兴
+    private static final String ZTE_VALUE_1 = "ZTE";
 
 
     public static ROM_TYPE getROMName(){
@@ -89,6 +94,8 @@ public class OSUtils {
             rom_type = ROM_TYPE.VISION;
         }else if (romBuildProperties.containsKey(MEIOS_KEY_1)) {
             rom_type = ROM_TYPE.MEIOS;
+        }else if (romBuildProperties.containsValue(ZTE_VALUE_1)) {
+            rom_type = ROM_TYPE.ZTE;
         }
 
         return rom_type;

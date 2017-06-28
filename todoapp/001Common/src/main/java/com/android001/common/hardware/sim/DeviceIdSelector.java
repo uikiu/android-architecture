@@ -13,6 +13,7 @@ import com.android001.common.hardware.sim.meizu.MeiZuDeviceIdRetriever;
 import com.android001.common.hardware.sim.oppo.OppoDeviceIDRetriever;
 import com.android001.common.hardware.sim.vivo.VivoSIMInfoRetriever;
 import com.android001.common.hardware.sim.xiaomi.XiaomiDeviceIDRetriever;
+import com.android001.common.hardware.sim.zte.ZTEDeviceIDRetriever;
 import com.android001.common.os.others.OSUtils;
 import com.orhanobut.logger.Logger;
 
@@ -77,6 +78,9 @@ public class DeviceIdSelector {
                         break;
                     case MEIOS:
                         deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(MeituDeviceIDRetriever.class);
+                        break;
+                    case ZTE:
+                        deviceIDRetriever = DeviceIDRetrieverFactory.createDeviceIDRetriever(ZTEDeviceIDRetriever.class);
                         break;
                     case UNKNOW://-----未知系统：启用默认
                     default://-----默认：执行所有

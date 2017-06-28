@@ -62,8 +62,8 @@ public class DeviceIdDAO {
 
     public void addDeviceId(String deviceId) {
         if (isValidDeviceId(deviceId)) {
-            deviceId.toUpperCase(Locale.getDefault());
-            IM_EI_SET.add(deviceId);
+            String upperDeviceID = deviceId.toUpperCase(Locale.getDefault());
+            IM_EI_SET.add(upperDeviceID);
         }
     }
     public void addDeviceIDs(List<String> deviceIds){

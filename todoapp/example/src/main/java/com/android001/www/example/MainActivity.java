@@ -78,15 +78,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Logger.e(stringBuilder.toString());
 //                String launcherPackageName = getLauncherPackageName(this);
 //                Log.e(TAG,"获取到当前正在运行的包名 = "+launcherPackageName);
-                skip2OtherApp();
+//                skip2OtherApp();
 //                showCustomDialog();
                 break;
             case R.id.drawerNavigation:
-//                showDialog("手机信息", stringBuilder.toString());
+                showDialog("手机信息", stringBuilder.toString());
 //                Intent intent = new Intent(this,CommonService.class);
 //                startService(intent);
 
-                showCustomNotification();
+//                showCustomNotification();
                 break;
         }
     }
