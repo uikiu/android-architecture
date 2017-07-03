@@ -82,12 +82,22 @@ LOCAL_MODULE:=hello-jni
 LOCAL_SRC_FILES:=hello-jni.c
 ```
 
-* 帮助系统将所有内容链接到一起：
+* **生成so文件：将所有内容链接到一起，构建目标共享库。此脚本之前必须为LOCAL_MODULE和LOCAL_SRC_FILES赋值**。
 ```
-include $(BUILD_SHARED_LIBRARY)
+ include $(BUILD_SHARED_LIBRARY)
 ```
-BUILD_SHARED_LIBRARY变量指向GNU Makefile脚本，用于收集您最近include后在LOCAL_XXX变量中定义的所有信息。
-此脚本确定要构建的内容及其操作方法。
+
+* **生成.a文件：用于构建静态库的 BUILD_SHARED_LIBRARY 的变体。**
+* **构建系统不会将静态库复制到您的项目/软件包，但可能使用它们构建共享库(请参阅下面的 LOCAL_STATIC_LIBRARIES 和 LOCAL_WHOLE_STATIC_LIBRARIES)**
+```
+include $(BUILD_STATIC_LIBRARY)
+```
+
+* 在这里介绍一下llinux下的相关文件
+  * .o 就相当于windows里的obj文件 ，一个.c或.cpp文件对应一个.o文件
+  * .a 是好多个.o合在一起,用于静态连接 ，即STATIC mode，多个.a可以链接生成一个exe的可执行文件
+  * .so 是shared object,用于动态连接的,和windows的dll差不多，使用时才载入。
+
 
 
 

@@ -10,8 +10,11 @@
 # 枚举源文件，以空格分割多个源文件
  LOCAL_SRC_FILES:=hello.cpp
 
-# 将所有内容链接到一起
+# 生成so文件：将所有内容链接到一起，构建目标共享库。此脚本之前必须为LOCAL_MODULE和LOCAL_SRC_FILES赋值。
  include $(BUILD_SHARED_LIBRARY)
+
+
+
 
 
 
