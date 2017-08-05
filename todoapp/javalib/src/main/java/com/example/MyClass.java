@@ -5,8 +5,16 @@ import com.android001.enumeration.EnumDefinition;
 public class MyClass {
 
 
-    public static void main(String...args){
+    public static void main(String...args)
+    {
+         int i= 200;
+        System.out.print("main.i = "+i+"\n");
+        change(i);
+    }
 
+    static void change(int i){
+        i = 300;
+        System.out.print("change.i = "+i);
     }
 
     private void synchronizedTest(){

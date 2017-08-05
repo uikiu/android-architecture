@@ -11,6 +11,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
@@ -24,6 +26,8 @@ import android.widget.Button;
 import com.android001.common.app.call.ActiveApp;
 import com.android001.common.app.call.Caller;
 import com.android001.common.app.call.UriCaller;
+import com.android001.common.app.utils.ApkTool;
+import com.android001.common.app.utils.Crc32Util;
 import com.android001.common.hardware.sim.DeviceIdSelector;
 import com.android001.common.hardware.sim.common.DeviceIdDAO;
 import com.android001.ndk.Hello;
@@ -36,6 +40,9 @@ import com.android001.common.app.call.example.QQRsevenCaller;
 import com.android001.ui.dialog.CustomDialog;
 import com.android001.www.example.notification.NotificationBuilder;
 import com.orhanobut.logger.Logger;
+
+import java.text.DateFormat;
+import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -73,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         stringBuilder.append("品牌："+ Build.BRAND+"\n");
         stringBuilder.append("型号："+ Build.MODEL+"\n");
         stringBuilder.append("IMEI&MEID："+ DeviceIdDAO.getInstance().getImEiAnyWay()+"\n");
+        stringBuilder.append("当前时间："+ DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime()));
+        stringBuilder.append("当前时间："+ System.currentTimeMillis());
 
         switch (v.getId()) {
             case R.id.print:
@@ -81,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                Log.e(TAG,"获取到当前正在运行的包名 = "+launcherPackageName);
 //                skip2OtherApp();
 //                showCustomDialog();
+                logAppMessage();
                 break;
             case R.id.drawerNavigation:
                 showDialog("手机信息", stringBuilder.toString());
@@ -88,9 +98,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                startService(intent);
 
 //                showCustomNotification();
-                Log.e(TAG,"java call native  : "+new Hello().helloJni());
+//                Log.e(TAG,"java call native  : "+new Hello().helloJni());
                 break;
         }
+    }
+
+    private void logAppMessage(){
+        StringBuilder sbCounter = new StringBuilder("使用计数器中Crc32Util类获取到的app的crc32 和 md5分别是：");
+        sbCounter.append(Crc32Util.crc(this,this.getPackageName())).append("  |  ")
+                .append(Crc32Util.md5(this,this.getPackageName()));
+        Log.e(TAG,sbCounter.toString());
+
+        try {
+            ApplicationInfo applicationInfo = this.getPackageManager().getApplicationInfo(
+                    this.getPackageName(), PackageManager.GET_META_DATA);
+            StringBuilder sbLauncher = new StringBuilder("使用launcher中的pingManager类获取到的app的crc32 和 md5分别是：");
+            sbLauncher.append(ApkTool.getApkFileSFCrc32(applicationInfo.sourceDir)).append("  |  ")
+                    .append(ApkTool.getFileMD5(applicationInfo.sourceDir));
+            Log.e(TAG,sbLauncher.toString());
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

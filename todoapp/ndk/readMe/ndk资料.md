@@ -20,25 +20,18 @@ NDK其实多了一个把so和apk打包的工具。而JNI并没有打包，只是
 * 生成头文件。在当前模块目录下追加一个shell文件，该文件用于生成头文件。
 * 编写JNI代码。根据头文件，在jni目录下创建对应的.C/.cpp文件，完成代码。
 
----
-
-```
-> Error: Your project contains C++ files but it is not using a supported native build system.
-  Consider using CMake or ndk-build integration with the stable Android Gradle plugin:
-   https://developer.android.com/studio/projects/add-native-code.html
-  or use the experimental plugin:
-   http://tools.android.com/tech-docs/new-build-system/gradle-experimental.
-
-你的项目中包含C++文件但是它没有使用支持本地构建系统。
-考虑使用CMake或者ndk-build与牢靠的Android Gradle 插件集成。
-```
 
 ---
-[官方文档](https://developer.android.com/ndk/guides/concepts.html)
-[官方sample](https://github.com/googlesamples/android-ndk)
-[如何开发jni应用](http://git.bookislife.com/post/2015/how-to-develop-jni-app/)
-[JNI与NDK编程](https://tom510230.gitbooks.io/android_ka_fa_yi_shu_tan_suo/content/chapter14.html)
+[官方文档](https://developer.android.com/ndk/guides/concepts.html)<br>
+[官方sample](https://github.com/googlesamples/android-ndk)<br>
+[如何开发jni应用](http://git.bookislife.com/post/2015/how-to-develop-jni-app/)<br>
+[JNI与NDK编程](https://tom510230.gitbooks.io/android_ka_fa_yi_shu_tan_suo/content/chapter14.html)<br>
 [ReLinker项目](https://github.com/KeepSafe/ReLinker)
+
+[Mastering Android NDK Build System-Part 1: Techniques with ndk-build](http://web.guohuiwang.com/technical-notes/androidndk1)<br>
+[Mastering Android NDK Build System - Part 2: Standalone toolchain](http://web.guohuiwang.com/technical-notes/androidndk2)<br>
+
+
 
 
 
