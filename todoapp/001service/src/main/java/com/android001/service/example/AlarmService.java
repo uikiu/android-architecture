@@ -1,4 +1,4 @@
-package com.android001.service.commonService;
+package com.android001.service.example;
 
 import android.app.Service;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import com.android001.service.alarmService.PendingAlarm;
 * created at 2017/6/12 下午5:38
 */
 
-public class CommonService extends Service {
+public class AlarmService extends Service {
 
     @Nullable
     @Override
