@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -11,15 +12,26 @@
     tools:context="com.android001.www.example.MainActivity">
 
     <Button
-        android:id="@+id/print"
+        android:id="@+id/ui"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="打印：IMEI和MEID" />
+        android:text="跳转到ui" />
 
     <Button
-        android:text="显示：IMEI和MEID"
-        android:layout_below="@id/print"
-        android:id="@+id/drawerNavigation"
+        android:id="@+id/depend"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:text="跳转到依赖" />
+
+    <Button
+        android:id="@+id/shell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转到shell" />
+
+    <Button
+        android:id="@+id/lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="锁屏" />
+</LinearLayout>

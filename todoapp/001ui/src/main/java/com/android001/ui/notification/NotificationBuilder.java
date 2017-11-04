@@ -80,4 +80,5 @@ public class NotificationBuilder {
         builder.setAutoCancel(true);//默认可移除
         return builder.build();
     }
+
 }

@@ -3,6 +3,7 @@ package com.android001.www.example;
 import android.app.Application;
 
 //import com.android.system.ReporterApi;
+import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -13,7 +14,11 @@ public class ExampleApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.init("android001");
+        Logger.addLogAdapter(new AndroidLogAdapter() {
+            @Override public boolean isLoggable(int priority, String tag) {
+                return BuildConfig.DEBUG;
+            }
+        });
         com.android001.www.example.AppHolder.getImp().initAppContext(this);
         com.android001.common.app.AppHolder.getImp().initAppContext(this);
         com.android001.ui.app.AppHolder.getInstance().initAppContext(this);

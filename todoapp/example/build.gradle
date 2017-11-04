@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.android001.www.example"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -81,7 +81,7 @@ android {
 
     productFlavors.all {
         flavor->
-            flavor.manifestPlaceholders = [CHANNEL_VALUE:name]
+            flavor.manifestPlaceholders = [CHANNEL_VALUE:"0001"]
     }
 
     /**
@@ -111,18 +111,12 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
-    compile 'com.orhanobut:logger:1.15'
+    compile 'com.orhanobut:logger:2.1.1'
     compile 'com.android.support:design:25.1.0'
+    compile project(':ndk')
     compile project(':001Common')
     compile project(':001ui')
-    //    compile project(':001storage')
-    //    compile project(':telephony_tools_r22')
-    //    compile files('libs/dlht_common_release_ver1.0.0.jar')
-    //        compile(name: 'dlht_common_release_ver1.0.0', ext: 'aar');
     compile project(':001service')
-    //计数器
-//    compile(name: 'app-domestic', ext: 'aar')
-//    compile 'com.developer.log:app:1.1.0'
-    //ndk
-    compile project(':ndk')
+    compile project(':001depend')
+    compile project(':001shell')
 }
