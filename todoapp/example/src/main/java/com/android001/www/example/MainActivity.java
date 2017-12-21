@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 
+import com.android001.ndk.HelloJNI;
 import com.android001.www.example.depend.DependMainActivity;
 import com.android001.www.example.ui.UIMainActivity;
 import com.android001.www.example.utils.OpenManager;
@@ -15,12 +16,11 @@ import com.orhanobut.logger.Logger;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnUi, btnDepend,btnShell,btnLock;
+    Button btnUi, btnDepend, btnShell, btnLock, btnJni;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.e("=====onCreate=====");
         setContentView(R.layout.activity_main);
         initView();
     }
@@ -28,37 +28,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
-        Logger.e("=====onStart=====");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Logger.e("=====onResume=====");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Logger.e("=====onRestart=====");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Logger.e("=====onPause=====");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Logger.e("=====onStop=====");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Logger.e("=====onDestroy=====");
     }
 
     //---------
@@ -74,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnLock = (Button) findViewById(R.id.lock);
         btnLock.setOnClickListener(this);
+
+        btnJni = (Button) findViewById(R.id.jni);
+        btnJni.setOnClickListener(this);
     }
 
     @Override
@@ -81,17 +78,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = null;
         switch (v.getId()) {
             case R.id.ui:
-                 intent = new Intent(this,UIMainActivity.class);
+                intent = new Intent(this, UIMainActivity.class);
                 break;
             case R.id.depend:
                 intent = new Intent(this, DependMainActivity.class);
                 break;
             case R.id.shell:
-                intent = new Intent(this,ShellActivity.class);
+                intent = new Intent(this, ShellActivity.class);
                 break;
             case R.id.lock:
 //                ScreenManager.setLockScreen();
                 OpenManager.isAllowMockLocation(this);
+                break;
+            case R.id.jni:
+                intent = new Intent(this, JNIActivity.class);
                 break;
             default:
                 break;

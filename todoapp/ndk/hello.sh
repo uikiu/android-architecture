@@ -6,7 +6,7 @@ export ProjectPath=$(cd ".";pwd)
 echo "ProjectPath = "$ProjectPath
 
 # 定义目标类、源文件、目标路径
-export TargetClassName="com.android001.ndk.Hello"
+export TargetClassName="com.android001.ndk.HelloJNI"
 export SourceFile="${ProjectPath}/src/main/java"
 export TargetPath="${ProjectPath}/src/main/jni"
 # 打印验证：源文件

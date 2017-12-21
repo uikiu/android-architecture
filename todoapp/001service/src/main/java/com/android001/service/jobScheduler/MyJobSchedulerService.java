@@ -27,6 +27,6 @@ public class MyJobSchedulerService extends JobService{
     }
 
     private void onJobFinish(){
-        jobFinished();
+//        jobFinished();
     }
 }

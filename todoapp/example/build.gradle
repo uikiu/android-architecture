@@ -80,24 +80,24 @@ android {
     }
 
     productFlavors.all {
-        flavor->
-            flavor.manifestPlaceholders = [CHANNEL_VALUE:"0001"]
+        flavor ->
+            flavor.manifestPlaceholders = [CHANNEL_VALUE: "0001"]
     }
 
     /**
      * 自动化打包
      */
-    applicationVariants.all { variant->
-        variant.outputs.each { output->
-            if (output.outputFile!=null&&output.outputFile.name.endsWith('.apk')) {
-                if ('release'.equals(variant.buildType.name) ){
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
+                if ('release'.equals(variant.buildType.name)) {
                     def apkFile = new File(output.outputFile.getParent(),
-                    "example_${variant.flavorName}_${variant.buildType.name}_ver${variant.versionName}_pt${new Date().format("yyyyMMddHHmm",TimeZone.getTimeZone("UTC"))}.apk")
-                    output.outputFile=apkFile
+                            "example_${variant.flavorName}_${variant.buildType.name}_ver${variant.versionName}_pt${new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("UTC"))}.apk")
+                    output.outputFile = apkFile
                 } else if ('common'.equals(variant.buildType.name)) {
                     def apkFile = new File(output.outputFile.getParent(),
-                            "example_${variant.flavorName}_${variant.buildType.name}_ver${variant.versionName}_pt${new Date().format("yyyyMMddHHmm",TimeZone.getTimeZone("UTC"))}.apk")
-                    output.outputFile=apkFile
+                            "example_${variant.flavorName}_${variant.buildType.name}_ver${variant.versionName}_pt${new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("UTC"))}.apk")
+                    output.outputFile = apkFile
                 }
             }
         }
@@ -109,14 +109,15 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    testCompile 'junit:junit:4.12'
-    compile 'com.orhanobut:logger:2.1.1'
-    compile 'com.android.support:design:25.1.0'
     compile project(':ndk')
     compile project(':001Common')
     compile project(':001ui')
     compile project(':001service')
     compile project(':001depend')
     compile project(':001shell')
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.orhanobut:logger:2.1.1'
+    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
 }

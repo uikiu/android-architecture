@@ -16,8 +16,8 @@ android {
     }
 
     externalNativeBuild {
-        ndkBuild{
-            path'src/main/jni/Android.mk'
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
         }
     }
     buildTypes {
@@ -34,5 +34,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }

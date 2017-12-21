@@ -28,7 +28,8 @@
 
         <activity android:name=".ui.UIMainActivity" />
         <activity android:name=".depend.DependMainActivity" />
-        <activity android:name=".ShellActivity"></activity>
+        <activity android:name=".ShellActivity" />
+        <activity android:name=".JNIActivity"></activity>
     </application>
 
 </manifest>
