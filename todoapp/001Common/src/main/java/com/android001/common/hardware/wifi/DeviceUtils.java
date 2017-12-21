@@ -11,7 +11,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by xixionghui on 2017/1/10.
+ * 参考：
+ * @link https://yrom.net/blog/2015/10/28/android-m-getting-wifi-macaddress-1/
+ * @link http://www.jianshu.com/p/a62ff95d8e17
+ * shell命令
  */
 
 public class DeviceUtils {
